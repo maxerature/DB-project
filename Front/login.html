@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form id="login">
+      <div class="container">
+        <p>
+          <label for="uname"><b>Username: </b></label>
+          <input
+            class="input-field"
+            type="text"
+            id="uname"
+            placeholder="Enter Username"
+            name="uname"
+            required
+          />
+        </p>
+
+        <p>
+          <label for="psw"><b>Password: </b></label>
+          <input
+            class="input-field"
+            type="password"
+            id="psw"
+            placeholder="Enter Password"
+            name="psw"
+            required
+          />
+        </p>
+
+        <p>
+          <label for "Utype"><b>User Type:</b></label>
+          <select name="Utype" id="Utype">
+            <option value="customer">Customer</option>
+            <option value="employee">Employee</option>
+            <option value="supplier">Supplier</option>
+          </select>
+        </p>
+
+        <p>
+          <button onclick="AuthUser()">Login</button>
+        </p>
+
+        <p>
+          <a href="registration.html">Register</a>
+        </p>
+      </div>
+    </form>
+
+    <script>
+      function AuthUser() {
+        event.preventDefault();
+        document.getElementById("login").checkValidity();
+        document.getElementById("login").reportValidity();
+        const username = document.getElementById("uname").value;
+        const password = document.getElementById("psw").value;
+        const userType = document.getElementById("Utype").value
+        if (username != "" && password != "") {
+          (async () => {
+            const rawResponse = await fetch("http://localhost:5000/login", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password, userType}),
+            });
+            const content = await rawResponse.json();
+
+            if (content.hasOwnProperty("success")) {
+              localStorage.setItem("username", username);
+              window.location.href = content.success;
+            } else if (content.hasOwnProperty("error")) {
+              alert(
+                "Error: Login failed\nUsername does not exist, or password was typed incorrectly."
+              );
+            }
+          })();
+        }
+      }
+    </script>
+  </body>
+</html>
