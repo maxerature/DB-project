@@ -5,7 +5,7 @@ import LoginController from '../controllers/login'
 import RegisterController from '../controllers/registerCustomer'
 import RegisterEmployee from '../controllers/registerEmployee'
 import RegisterSupplier from '../controllers/registerSupplier'
-
+import CreateProduct from '../controllers/createProduct'
 
 
 export const HomeRoutes = express.Router()
@@ -25,6 +25,10 @@ HomeRoutes.post('/registercustomer', RegisterController.registercustomer)
 HomeRoutes.post('/registeremployee', RegisterEmployee.registeremployee)
 
 HomeRoutes.post('/registersupplier', RegisterSupplier.registersupplier)
+
+HomeRoutes.post('/createproduct', CreateProduct.createProduct)
+
+
 
 
 // Add routes using above syntax
