@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Create Product</title>
+    </head>
+    <body>
+        <form id="newProduct">
+            <div class="container">
+                <p>
+                    <label for="name"><b>Product Name: </b></label>
+                    <input
+                        class="input-field"
+                        type="text"
+                        id="name"
+                        placeholder="Enter procduct name"
+                        required
+                    />
+                </p>
+
+                <p>
+                    <label for="supplierID"><b>ID Number: </b></label>
+                    <input
+                        class="input-field"
+                        type="text"
+                        id="id"
+                        placeholder="Enter product ID"
+                        required
+                    />
+                </p>
+
+                <p>
+                    <label for="msrp"><b>MSRP: </b></label>
+                    <input
+                        class="input-field"
+                        type="number"
+                        id="msrp"
+                        step="0.01"
+                        placeholder="Enter product MSRP"
+                        required
+                    />
+                </p>
+
+                <p>
+                    <label for="reorderCount"><b>Reorder at: </b></label>
+                    <input
+                        class="input-field"
+                        type="number"
+                        id="reorderCount"
+                        placeholder="Stock count to reorder at"
+                    />
+                </p>
+
+                <p>
+                    <label for="orderNumber"><b>Amount to reorder: </b></label>
+                    <input
+                        class="input-field"
+                        type="number"
+                        id="orderNumber"
+                        placeholder="How many to order"
+                        
+                    />
+                </p>
+
+                <p>
+                    <button onclick="createProduct()">Submit</button>
+                </p>
+            </div>
+        </form>
+        <script>
+            function createProduct() {
+                event.preventDefault();
+
+                //Check validity
+                document.getElementById("name").checkValidity();
+                document.getElementById("id").checkValidity();
+                document.getElementById("msrp").checkValidity();
+                document.getElementById("reorderCount").checkValidity();
+                document.getElementById("orderNumber").checkValidity();
+
+                document.getElementById("name").reportValidity();
+                document.getElementById("id").reportValidity();
+                document.getElementById("msrp").reportValidity();
+                document.getElementById("reorderCount").reportValidity();
+                document.getElementById("orderNumber").reportValidity();
+
+                //Get values
+                const name = document.getElementById("name").value;
+                const id = document.getElementById("id").value;
+                const msrp = document.getElementById("msrp").value;
+                const reorderCount = document.getElementById("reorderCount").value;
+                const orderNumber = document.getElementById("orderNumber").value;
+
+                const username = localStorage.getItem('username');
+
+                (async () => {
+                    const rawResponse = await fetch("http://localhost:5000/createProduct", {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ username, name, id, msrp, reorderCount, orderNumber}),
+                    });
+                    const content = await rawResponse.json();
+                })();
+            }
+        </script>
+    </body>
+</html>
