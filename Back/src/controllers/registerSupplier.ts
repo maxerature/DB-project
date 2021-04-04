@@ -91,7 +91,7 @@ WHERE\n\
                                 zipcode\n\
                             )\n\
                             VALUES (\n\
-                                0,\n\
+                                2,\n\
                                 ${userId},\n\
                                 "${addr1}",\n\
                                 "${addr2}",\n\

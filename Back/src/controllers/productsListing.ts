@@ -1,0 +1,122 @@
+import express from "express";
+import createError from "http-errors";
+import { AuthSchema } from "../config/Validation/auth";
+import MySQL from "../config/Init/initTypeMySQL";
+
+export default {
+    productsListing: async (
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+    ) => {
+        try {
+            //Setup mysql
+            var mysql = require('mysql2');
+            var con = await mysql.createConnection({
+                host: "localhost",
+                user: "root",
+                password: "password",
+                port: 3306,
+                database: "databaseproject"
+            });
+
+            //Setup string to parse into div
+            let divString = `
+            <table style="width:100%">\n\
+                <tr>\n\
+                    <th></th>\n\
+                    <th>Name</th>\n\
+                    <th>MSRP</th>\n\
+                    <th>List Price</th>\n\
+                    <th>Amount in Stock</th>\n\
+                    <th>Supplier Name</th>\n\
+                    <th>Ships From</th>\n\
+                </tr>"`;
+
+            //Setup query to get products
+            let query = `
+            SELECT * \n\
+            FROM Products`
+
+            //Get products
+            con.connect(function(err) {
+                if(err) throw err;
+                con.query(query, function(err, result) {
+                    if (err) throw err;
+
+                    if(!result || result == '') {
+                        res.json({Error: "Error."});
+                    } else {
+                        let productInfo = result;
+
+                        //Get product shipping locations
+                        let query = `
+                        SELECT 
+                            userID,\n\
+                            addressLine1,\n\
+                            addressLine2,\n\
+                            city,\n\
+                            state,\n\
+                            nation,\n\
+                            zipcode\n\
+                        \n\
+                        FROM Addresses\n\
+                        WHERE\n\
+                            addresses.userType = 2`
+                        
+                        con.connect(function(err) {
+                            if(err) throw err;
+                            con.query(query, function(err, result) {
+                                let addresses = result;
+                                console.log("addresses: ");
+                                console.log(addresses);
+
+
+                                //Get supplier names
+                                let query = `
+                                SELECT \n\
+                                    supplierID,\n\
+                                    supplierName\n\
+                                FROM Suppliers`
+                                con.connect(function(err) {
+                                    if(err) throw err;
+                                    con.query(query, function(err, result) {
+                                        console.log("Suppliers: ");
+                                        console.log(result);
+
+                                        for(let object of productInfo) {
+                                            //Get object address
+                                            let addrUnparsed = addresses.find(o =>o.userID === object.supplierID);
+                                            let addr = `${addrUnparsed.addressLine1}<br>${addrUnparsed.addressLine2}<br>${addrUnparsed.city}, ${addrUnparsed.state}, ${addrUnparsed.nation}, ${addrUnparsed.zipcode}`;
+
+                                            //Get object supplier name
+                                            let supNameObj = result.find(o => o.supplierID === object.supplierID);
+
+                                            divString += `
+                                            <tr>\n
+                                                <th><button id="add" onClick="add(${object.productID})">Add to Cart</button></th>
+                                                <th>${object.name}</th>\n\
+                                                <th>\$${object.MSRP}</th>\n\
+                                                <th>\$${object.listPrice}</th>\n\
+                                                <th>${object.count}</th>\n\
+                                                <th>${supNameObj.supplierName}</th>\n\
+                                                <th>${addr}</th>\n\
+                                            </tr>\n`;
+                                        }
+                                        divString += `</table>`;
+                                        res.json({Success: divString});
+                                    })
+                                })
+
+                            })
+                        })
+                        
+                    }
+                });
+            });
+
+        } catch (error) {
+            res.json({Error: "Error. Could not load products."})
+        }
+    }
+}
