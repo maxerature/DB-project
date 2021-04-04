@@ -7,6 +7,8 @@ import RegisterEmployee from '../controllers/registerEmployee'
 import RegisterSupplier from '../controllers/registerSupplier'
 import CreateProduct from '../controllers/createProduct'
 import ProductsListing from '../controllers/productsListing'
+import CheckoutPopulate from '../controllers/checkoutPopulate'
+import Checkout from '../controllers/checkout'
 
 
 export const HomeRoutes = express.Router()
@@ -30,6 +32,10 @@ HomeRoutes.post('/registersupplier', RegisterSupplier.registersupplier)
 HomeRoutes.post('/createproduct', CreateProduct.createProduct)
 
 HomeRoutes.post('/productslisting', ProductsListing.productsListing)
+
+HomeRoutes.post('/checkoutPopulate', CheckoutPopulate.checkoutPopulate)
+
+HomeRoutes.post('/checkout', Checkout.checkout)
 
 
 

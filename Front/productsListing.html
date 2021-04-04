@@ -11,8 +11,11 @@
       <h1>Products</h1>
       <div id="productsTable"></div>
 
+      <button type="button" id="checkout" onclick="window.location.href =`checkout.html`"><h3>Checkout</h3></button>
+
       <script>
           function loadProducts() {
+              
               (async () => {
                   const rawResponse = await fetch("http://localhost:5000/productsListing", {
                       method: "POST",
@@ -28,17 +31,32 @@
                       document.getElementById("productsTable").innerHTML = content.Success;
                   }
               })()
+              localStorage.removeItem("cart");
           }
 
-            function add(productID) {
+            function add(productID, pos) {
                 let cart = []
                 if(localStorage.getItem('cart')) {
-                    cart.push(localStorage.getItem('cart'));
+                    cart = JSON.parse(localStorage.getItem('cart'));
                 }
-
+                let val = parseInt(document.getElementById(`count${pos}`).innerHTML);
+                val++;
+                document.getElementById(`count${pos}`).innerHTML = val;
                 cart.push(productID);
-                localStorage.setItem("cart", cart);
-                
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }   
+
+            function remove(productID, pos) {
+                let cart = []
+                if(localStorage.getItem('cart')) {
+                    cart = JSON.parse(localStorage.getItem('cart'));
+                }
+                let val = parseInt(document.getElementById(`count${pos}`).innerHTML);
+                val--;
+                document.getElementById(`count${pos}`).innerHTML = val;
+                let index = cart.indexOf(productID);
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
             }   
       </script>
   </body>

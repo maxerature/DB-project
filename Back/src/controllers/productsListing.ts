@@ -84,6 +84,7 @@ export default {
                                         console.log("Suppliers: ");
                                         console.log(result);
 
+                                        let count = 0;
                                         for(let object of productInfo) {
                                             //Get object address
                                             let addrUnparsed = addresses.find(o =>o.userID === object.supplierID);
@@ -94,7 +95,9 @@ export default {
 
                                             divString += `
                                             <tr>\n
-                                                <th><button id="add" onClick="add(${object.productID})">Add to Cart</button></th>
+                                                <th>(<div id="count${count}" class="inline">0</div>)<br><button id="add" onClick="add(${object.productID}, ${count})">Add to Cart</button>
+                                                <br>
+                                                <button id="remove" onClick="remove(${object.productID}, ${count})">Remove from Cart</button></th>
                                                 <th>${object.name}</th>\n\
                                                 <th>\$${object.MSRP}</th>\n\
                                                 <th>\$${object.listPrice}</th>\n\
@@ -102,6 +105,7 @@ export default {
                                                 <th>${supNameObj.supplierName}</th>\n\
                                                 <th>${addr}</th>\n\
                                             </tr>\n`;
+                                            count++;
                                         }
                                         divString += `</table>`;
                                         res.json({Success: divString});
