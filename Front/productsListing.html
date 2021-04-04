@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href = "Style.css">
+    <title>Products</title>
+  </head>
+  <body onload="loadProducts()">
+      <h1>Products</h1>
+      <div id="productsTable"></div>
+
+      <script>
+          function loadProducts() {
+              (async () => {
+                  const rawResponse = await fetch("http://localhost:5000/productsListing", {
+                      method: "POST",
+                      headers: {
+                          Accept: "application/json",
+                          "Content-Type": "application/json",
+                      },
+                      
+                  });
+                  const content = await rawResponse.json();
+
+                  if(content.hasOwnProperty("Success")) {
+                      document.getElementById("productsTable").innerHTML = content.Success;
+                  }
+              })()
+          }
+
+            function add(productID) {
+                let cart = []
+                if(localStorage.getItem('cart')) {
+                    cart.push(localStorage.getItem('cart'));
+                }
+
+                cart.push(productID);
+                localStorage.setItem("cart", cart);
+                
+            }   
+      </script>
+  </body>
