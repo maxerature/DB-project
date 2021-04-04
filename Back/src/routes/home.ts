@@ -2,12 +2,10 @@ import express from 'express'
 import Config from '../config/enviormentVariables'
 import Settings from '../settings.json'
 import LoginController from '../controllers/login'
-import RegisterController from '../controllers/register'
-import MProfileController from '../controllers/manageProfile'
-import FuelQuoteController from '../controllers/fuelQuote'
-import FuelRequestController from '../controllers/fuelQuoteRequest'
-import FuelSubmitController from '../controllers/submitQuote'
-import HistoryController from '../controllers/history'
+import RegisterController from '../controllers/registerCustomer'
+import RegisterEmployee from '../controllers/registerEmployee'
+import RegisterSupplier from '../controllers/registerSupplier'
+
 
 
 export const HomeRoutes = express.Router()
@@ -21,6 +19,12 @@ HomeRoutes.get('/', async (req, res, next) => {
 })
 
 HomeRoutes.post('/login', LoginController.login)
+
+HomeRoutes.post('/registercustomer', RegisterController.registercustomer)
+
+HomeRoutes.post('/registeremployee', RegisterEmployee.registeremployee)
+
+HomeRoutes.post('/registersupplier', RegisterSupplier.registersupplier)
 
 
 // Add routes using above syntax
