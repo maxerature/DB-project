@@ -31,7 +31,7 @@ export default {
                     <th>Amount in Stock</th>\n\
                     <th>Supplier Name</th>\n\
                     <th>Ships From</th>\n\
-                </tr>"`;
+                </tr>`;
 
             //Setup query to get products
             let query = `

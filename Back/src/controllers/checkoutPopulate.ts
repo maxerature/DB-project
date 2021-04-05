@@ -77,9 +77,8 @@ export default {
           }
           divString += `
           </table>`
-          let price = `<b>$` + total + "</b>";
 
-          res.json({success: divString, price:price});
+          res.json({success: divString, price:total});
           
         })
       })

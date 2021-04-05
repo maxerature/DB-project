@@ -39,11 +39,9 @@ export default {
             console.log(query);
             con.connect(function(err) {
                 if(err) throw err;
-                console.log(query);
                 con.query(query, function(err, result) {
                     if(err) throw err;
 
-                    console.log(result);
                     if(result[0].supplierID) {
                         let userid = result[0].supplierID;
 
@@ -57,7 +55,6 @@ export default {
 
                         con.connect(function(err) {
                             if(err) throw err;
-                            console.log(query);
                             con.query(query, function(err, result) {
                                 if(err) throw err;
 

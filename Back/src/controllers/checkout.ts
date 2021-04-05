@@ -11,9 +11,7 @@ export default {
         next: express.NextFunction
     ) => {
         try {
-            const {unique, counts, tType, tnum, username} = req.body;
-            console.log(unique);
-            console.log(counts);
+            const {unique, counts, tType, tnum, username, total} = req.body;
 
             let first = true;
 
@@ -39,13 +37,15 @@ export default {
                     transactionComplete,\n\
                     paidWCheck,\n\
                     paidWCredit,\n\
-                    paidWDebit\n\
+                    paidWDebit,\n\
+                    total\n\
                 )\n\
                 VALUES (\n\
                     false,\n\
                     true,\n\
                     false,\n\
-                    false\n\
+                    false,\n\
+                    ${total}\n\
                 )`
             } else if(tType == "card") {
                 query = `\
@@ -54,14 +54,16 @@ export default {
                     paidWCheck,\n\
                     paidWCredit,\n\
                     paidWDebit,\n\
-                    cardNumber\n\
+                    cardNumber,\n\
+                    total\n\
                 )\n\
                 VALUES (\n\
                     false,\n\
                     false,\n\
                     true,\n\
                     false,\n\
-                    ${tnum}\n\
+                    ${tnum},\n\
+                    ${total}\n\
                 )`
             } else {
                 query = `\
@@ -70,23 +72,23 @@ export default {
                     paidWCheck,\n\
                     paidWCredit,\n\
                     paidWDebit,\n\
-                    bankNumber\n\
+                    bankNumber,\n\
+                    total\n\
                 )\n\
                 VALUES (\n\
                     false,\n\
                     false,\n\
                     false,\n\
                     true,\n\
-                    ${tnum}\n\
+                    ${tnum},\n\
+                    ${total}\n\
                 )`
             }
 
-            console.log(query);
             con.connect(function(err) {
                 if(err) throw err;
                 con.query(query, function (err, result) {
                     if(err) throw err;
-                    console.log(result);
                     let transID = result.insertId;
 
                     //Get user ID
@@ -99,7 +101,6 @@ export default {
                     con.connect(function(err) {
                         if(err) throw err;
                         con.query(query, function (err, result) {
-                            console.log(result);
                             let userID = result[0].CustomerID;
 
                             //Get user address
@@ -128,33 +129,37 @@ export default {
                                         ${transID}\n\
                                     )`
 
-                                    console.log(query);
 
                                     con.connect(function (err) {
                                         if(err) throw err;
                                         con.query(query, function (err, result) {
-                                            console.log(result);
                                             let orderID = result.insertId;
                                             
                                             //Add items to order and decrease product counts
-                                            let count=0;
-                                            for(let object of unique) {
+                                            for(let i=0; i< unique.length; i++) {
+                                                let object=unique[i];
                                                 let query = `\
                                                 INSERT INTO Cartobjects (\n\
                                                     orderID,\n\
-                                                    productID\n\
+                                                    productID,\n\
+                                                    count\n\
                                                 )\n\
                                                 VALUES (\n\
                                                     ${orderID},\n\
-                                                    ${object}\n\
+                                                    ${object},\n\
+                                                    ${counts[i]}\n\
                                                 )`
+                                                console.log(counts[i]);
+                                                console.log(counts);
+                                                console.log(counts[0]);
+                                                console.log(counts[1]);
                                                 con.connect(function (err) {
                                                     if(err) throw err;
                                                     con.query(query, function(err, result) {
                                                         if(err) throw err;
                                                         let query = `\
                                                         UPDATE Products\n\
-                                                        SET count=count-${counts[count]}\n\
+                                                        SET count=count-${counts[i]}\n\
                                                         WHERE\n\
                                                             productID = ${object}`
 
@@ -167,7 +172,6 @@ export default {
                                                     })
                                                 })
                                             }
-                                            res.json({success: "Successfully placed order."})
                                         })
                                     })
 
@@ -185,7 +189,7 @@ export default {
                     //     customerID`
                 })
             })
-
+            res.json({success: "Successfully placed order."})
         } catch(error) {
             res.json({Error: "Error.  Could not checkout."})
         }

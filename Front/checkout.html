@@ -24,7 +24,7 @@
               <p class="capital"><div id="extraField" class="capital"></div></p>
           </div>
           <p>
-            <p class = "inline">Total:</p> <div class="inline" id="total"></div>
+            <b><p class = "inline">Total: $</p> <div class="inline" id="total"></div></b>
             <button type="button" id="checkout" onclick="check()">Check Out</button>
         </p>
       </form>
@@ -112,6 +112,7 @@
           }
 
           function check() {
+            let total = parseInt(document.getElementById('total').innerHTML);
             let cart = localStorage.getItem('cart');
             let username = localStorage.getItem('username');
             let tType = document.getElementById("ptype").value;
@@ -141,7 +142,7 @@
                           Accept: "application/json",
                           "Content-Type": "application/json",
                       },
-                      body: JSON.stringify({unique, counts, tType, tnum, username}),
+                      body: JSON.stringify({unique, counts, tType, tnum, username, total}),
                   });
                   const content = await rawResponse.json();
                   if(content.hasOwnProperty("success")) {

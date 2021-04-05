@@ -9,6 +9,7 @@ import CreateProduct from '../controllers/createProduct'
 import ProductsListing from '../controllers/productsListing'
 import CheckoutPopulate from '../controllers/checkoutPopulate'
 import Checkout from '../controllers/checkout'
+import PurchaseHistoryLoad from '../controllers/purchaseHistoryLoad'
 
 
 export const HomeRoutes = express.Router()
@@ -36,6 +37,8 @@ HomeRoutes.post('/productslisting', ProductsListing.productsListing)
 HomeRoutes.post('/checkoutPopulate', CheckoutPopulate.checkoutPopulate)
 
 HomeRoutes.post('/checkout', Checkout.checkout)
+
+HomeRoutes.post('/purchaseHistoryLoad', PurchaseHistoryLoad.purchaseHistoryLoad)
 
 
 
