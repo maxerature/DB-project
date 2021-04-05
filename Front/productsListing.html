@@ -13,6 +13,11 @@
 
       <button type="button" id="checkout" onclick="window.location.href =`checkout.html`"><h3>Checkout</h3></button>
 
+
+      <p><a href="purchaseHistory.html">View purchase history</a></p>
+
+      <button type="button" id="logout" onclick="logout()"><h3>Log Out</h3></button>
+      
       <script>
           function loadProducts() {
               
@@ -61,6 +66,11 @@
                 let index = cart.indexOf(productID);
                 cart.splice(index, 1);
                 localStorage.setItem("cart", JSON.stringify(cart));
-            }   
+            }  
+            
+            function logout() {
+              localStorage.removeItem("username");
+              window.location.href = "login.html";
+          }
       </script>
   </body>

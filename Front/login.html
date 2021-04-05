@@ -52,6 +52,7 @@
       </div>
     </form>
 
+
     <script>
       function AuthUser() {
         event.preventDefault();
@@ -83,6 +84,11 @@
           })();
         }
       }
+
+      function logout() {
+              localStorage.removeItem("username");
+              window.location.href = "login.html";
+          }
     </script>
   </body>
 </html>

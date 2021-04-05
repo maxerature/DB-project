@@ -305,6 +305,11 @@
                     alert("Cannot set those credentials!  Please enter valid login information!");
                 }
             }
+
+            function logout() {
+              localStorage.removeItem("username");
+              window.location.href = "login.html";
+          }
           </script>
     </body>
 </html>

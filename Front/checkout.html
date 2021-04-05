@@ -30,6 +30,10 @@
       </form>
 
       <button type="button" id="goback" onclick="window.location.href =`productsListing.html`"><h3>Go Back</h3></button>
+
+      <p><a href="purchaseHistory.html">View purchase history</a></p>
+      <button type="button" id="logout" onclick="logout()"><h3>Log Out</h3></button>
+
       
 
 
@@ -148,10 +152,15 @@
                   if(content.hasOwnProperty("success")) {
                       alert ("Your order has been successfully processed.");
                       localStorage.removeItem('cart');
-                      window.location.href = "productsListing.html";
+                      window.location.href = "purchaseHistory.html";
                   }
             })()
 
+          }
+
+          function logout() {
+              localStorage.removeItem("username");
+              window.location.href = "login.html";
           }
       </script>
   </body>

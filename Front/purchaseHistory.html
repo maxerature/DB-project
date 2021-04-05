@@ -10,6 +10,9 @@
   <body onload="loadHistory()">
     <h1>History</h1>
     <div id="page-contents"></div>
+    <p><a href="productsListing.html">Return to products listing</a></p>
+
+    <button type="button" id="logout" onclick="logout()"><h3>Log Out</h3></button>
     <script>
         let hidden;
         function loadHistory() {
@@ -34,5 +37,13 @@
         function setContents(number) {
             document.getElementById(`toggle${number}`).innerHTML = hidden[number];
         }
+        function remContents(number) {
+            document.getElementById(`toggle${number}`).innerHTML = `<button type="button" id="button${number}" onclick="setContents(${number})">View Order</button>`
+        }
+
+        function logout() {
+              localStorage.removeItem("username");
+              window.location.href = "login.html";
+          }
     </script>
   </body>

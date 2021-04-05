@@ -84,7 +84,7 @@ export default {
                     
                     for(let i=0; i<result.length; i++) {
                         divString += `\
-                        <div id="toggle${i}"><button type="button" id="button${i}" onclick="setContents(${i})">View Order</button></p>`
+                        <div id="toggle${i}"><button type="button" id="button${i}" onclick="setContents(${i})">View Order</button></div>`
                     }
 
                     
@@ -96,8 +96,7 @@ export default {
                         let object = orders[i];
                         //Set base text per each order
                         let hiddenString = `\
-                        <div id="toggleOff${i}"><button type="button" id="buttonOff${i}" onclick="remContents(${i})">View  Order</button></p>\n\
-                        <br>\n\
+                        <div id="toggleOff${i}"><button type="button" id="buttonOff${i}" onclick="remContents(${i})">Close  Order</button></p>\n\
                         <b>Purchase Date: </b><p class="inline">${object.purchaseDate}</p><br>\n\
                         <b>Delivered to: </b>\n\
                         <p>${object.addressLine1}</p>\n\
