@@ -62,8 +62,7 @@ export default {
                         \n\
                         FROM Addresses\n\
                         WHERE\n\
-                            addresses.userType = 2\n\
-                            AND active = true`
+                            addresses.userType = 2`
                         
                         con.connect(function(err) {
                             if(err) throw err;
