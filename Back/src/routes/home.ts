@@ -10,6 +10,9 @@ import ProductsListing from '../controllers/productsListing'
 import CheckoutPopulate from '../controllers/checkoutPopulate'
 import Checkout from '../controllers/checkout'
 import PurchaseHistoryLoad from '../controllers/purchaseHistoryLoad'
+import ViewAddressesGet from '../controllers/viewAddressesGet'
+import ViewAddressesSet from '../controllers/viewAddressesSet'
+import ViewAddressesAdd from '../controllers/viewAddressesAdd'
 
 
 export const HomeRoutes = express.Router()
@@ -40,6 +43,11 @@ HomeRoutes.post('/checkout', Checkout.checkout)
 
 HomeRoutes.post('/purchaseHistoryLoad', PurchaseHistoryLoad.purchaseHistoryLoad)
 
+HomeRoutes.post('/viewAddressesGet', ViewAddressesGet.viewAddressesGet)
+
+HomeRoutes.post('/viewAddressesSet', ViewAddressesSet.viewAddressesSet)
+
+HomeRoutes.post('/viewAddressesAdd', ViewAddressesAdd.viewAddressesAdd)
 
 
 

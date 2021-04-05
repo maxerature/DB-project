@@ -108,7 +108,8 @@ export default {
                             SELECT AddressID\n\
                             FROM Addresses\n\
                             WHERE\n\
-                                userID = ${userID};`
+                                userID = ${userID}\n\
+                                AND active = true;`
 
                             con.connect(function (err) {
                                 if(err) throw err;

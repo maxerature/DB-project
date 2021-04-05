@@ -104,7 +104,8 @@ WHERE\n\
                                 city,\n\
                                 state,\n\
                                 nation,\n\
-                                zipcode\n\
+                                zipcode,\n\
+                                active\n\
                             )\n\
                             VALUES (\n\
                                 1,\n\
@@ -114,7 +115,8 @@ WHERE\n\
                                 "${city}",\n\
                                 "${state}",\n\
                                 "USA",\n\
-                                ${zipcode}\n\
+                                ${zipcode},\n\
+                                true\n\
                             )`
 
                             con.connect(function(err) {

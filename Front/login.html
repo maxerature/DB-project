@@ -75,6 +75,7 @@
 
             if (content.hasOwnProperty("success")) {
               localStorage.setItem("username", username);
+              localStorage.setItem("userType", userType);
               window.location.href = content.success;
             } else if (content.hasOwnProperty("error")) {
               alert(
