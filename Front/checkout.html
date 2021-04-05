@@ -28,6 +28,8 @@
             <button type="button" id="checkout" onclick="check()">Check Out</button>
         </p>
       </form>
+
+      <button type="button" id="goback" onclick="window.location.href =`productsListing.html`"><h3>Go Back</h3></button>
       
 
 
@@ -49,8 +51,28 @@
                     counts[index]++;
                   }
               }
-              console.log("Unique: ");
-              console.log(unique);
+              
+              console.log("Unique: " + unique);
+              console.log("Counts: " + counts);
+
+              
+                //Bubblesort because I'm tired from making the rest of the backend and most of the front end BY MYSELF(Max B)  ((This fixes an issue where cart contents are displayed and ordred incorrectly))
+                let swapped;
+                do {
+                    swapped = false;
+                    for(let i=0; i<unique.length; i++) {
+                        if(unique[i] > unique[i+1]) {
+                            let tempVal1 = unique[i];
+                            let tempVal2 = counts[i];
+
+                            unique[i] = unique[i+1];
+                            counts[i] = counts[i+1];
+                            unique[i+1] = tempVal1;
+                            counts[i+1] = tempVal2;
+                            swapped = true;
+                        }
+                    }
+                } while(swapped)
 
               (async () => {
                   const rawResponse = await fetch("http://localhost:5000/checkoutPopulate", {
@@ -68,6 +90,7 @@
                   }
             })()
           }
+
 
           function newField() {
               let val = document.getElementById("ptype").value;

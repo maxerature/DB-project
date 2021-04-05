@@ -13,6 +13,8 @@ export default {
     try {
       const {unique, counts} = req.body;
 
+      console.log(unique);
+      console.log(counts);
 
       let first = true;
 

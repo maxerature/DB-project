@@ -47,11 +47,15 @@
             }   
 
             function remove(productID, pos) {
+                
                 let cart = []
                 if(localStorage.getItem('cart')) {
                     cart = JSON.parse(localStorage.getItem('cart'));
                 }
                 let val = parseInt(document.getElementById(`count${pos}`).innerHTML);
+                if(val < 1) {
+                    return;
+                }
                 val--;
                 document.getElementById(`count${pos}`).innerHTML = val;
                 let index = cart.indexOf(productID);
