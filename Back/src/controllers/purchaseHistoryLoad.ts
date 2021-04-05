@@ -113,7 +113,7 @@ export default {
                         }
 
                         hiddenString += `\
-                        <table>\n\
+                        <table class="blueTable">\n\
                             <tr>\n\
                                 <th>Product</th>\n\
                                 <th>Amount Ordered</th>\n\

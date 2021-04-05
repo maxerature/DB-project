@@ -8,11 +8,11 @@
     <title>Products</title>
   </head>
   <body onload="loadHistory()">
+    <div class="nav"><button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button><p class="inline"><a href="productsListing.html">Return to products listing</a></p></div>
     <h1>History</h1>
     <div id="page-contents"></div>
-    <p><a href="productsListing.html">Return to products listing</a></p>
+    
 
-    <button type="button" id="logout" onclick="logout()"><h3>Log Out</h3></button>
     <script>
         let hidden;
         function loadHistory() {

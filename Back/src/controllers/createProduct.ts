@@ -31,10 +31,15 @@ export default {
 
             //Get supplier ID
             let query = `\
-            SELECT supplierID\n\
-            FROM Suppliers\n\
-            WHERE \n\
-                username  = \"${username}\";`;
+            SELECT \n\
+            	suppliers.supplierID,\n\
+                addresses.addressID\n\
+            FROM (Suppliers, Addresses)\n\
+            WHERE\n\
+            	username = "Bencraft"\n\
+                AND Addresses.userType = 2\n\
+                AND Addresses.active = true\n\
+                AND Addresses.userID = suppliers.supplierID;`;
 
             console.log(query);
             con.connect(function(err) {
@@ -44,6 +49,7 @@ export default {
 
                     if(result[0].supplierID) {
                         let userid = result[0].supplierID;
+                        let addressid = result[0].addressID;
 
                         //Make sure no duplicate product ids for the same supplier
                         let query = `\
@@ -79,7 +85,8 @@ export default {
                                                 listPrice,\n\
                                                 reorderAtCount,\n\
                                                 orderCount\n\,
-                                                count\n\
+                                                count,\n\
+                                                addressID
                                             )\n\
                                             VALUES (\n\
                                                 ${userid},\n\
@@ -89,7 +96,8 @@ export default {
                                                 ${msrp},\n\
                                                 ${reorderCount},\n\
                                                 ${orderNumber},\n\
-                                                100\n\
+                                                100,\n\
+                                                ${addressid}\n\
                                             )`
                                         }
                                     } else if(orderNumber) {

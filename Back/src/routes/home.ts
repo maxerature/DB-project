@@ -6,13 +6,15 @@ import RegisterController from '../controllers/registerCustomer'
 import RegisterEmployee from '../controllers/registerEmployee'
 import RegisterSupplier from '../controllers/registerSupplier'
 import CreateProduct from '../controllers/createProduct'
-import ProductsListing from '../controllers/productsListing'
+import ProductsListing from '../controllers/productListing'
 import CheckoutPopulate from '../controllers/checkoutPopulate'
 import Checkout from '../controllers/checkout'
 import PurchaseHistoryLoad from '../controllers/purchaseHistoryLoad'
 import ViewAddressesGet from '../controllers/viewAddressesGet'
 import ViewAddressesSet from '../controllers/viewAddressesSet'
 import ViewAddressesAdd from '../controllers/viewAddressesAdd'
+import supplierProductsView from '../controllers/supplierProductsView'
+import supplierProductsViewReorder from '../controllers/supplierProductsViewReorder'
 
 
 export const HomeRoutes = express.Router()
@@ -48,6 +50,10 @@ HomeRoutes.post('/viewAddressesGet', ViewAddressesGet.viewAddressesGet)
 HomeRoutes.post('/viewAddressesSet', ViewAddressesSet.viewAddressesSet)
 
 HomeRoutes.post('/viewAddressesAdd', ViewAddressesAdd.viewAddressesAdd)
+
+HomeRoutes.post('/supplierProductsViewLoad', supplierProductsView.supplierProductsViewLoad)
+
+HomeRoutes.post('/supplierProductsViewReorder', supplierProductsViewReorder.supplierProductsViewReorder)
 
 
 

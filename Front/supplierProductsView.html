@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href = "Style.css">
+    <title>View Supplier Products</title>
+    </head>
+    <body onload="loadProducts()">
+        <div class="nav"><button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button></div>
+
+        <div id="productsTable"></div>
+
+        <script>
+            function loadProducts() {
+                let username = localStorage.getItem('username');
+
+                (async () => {
+                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewLoad", {
+                      method: "POST",
+                      headers: {
+                          Accept: "application/json",
+                          "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({username})
+                  });
+                  const content = await rawResponse.json();
+
+                  if(content.hasOwnProperty("Success")) {
+                      document.getElementById("productsTable").innerHTML = content.Success;
+                  }
+              })()
+            }
+
+            function reorder(id) {
+                let count = document.getElementById(`orderNum${id}`).value;
+                if(count < 1) {
+                    alert("Value must be greater than 0");
+                }
+                else {
+                    (async () => {
+                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewReorder", {
+                      method: "POST",
+                      headers: {
+                          Accept: "application/json",
+                          "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({id, count})
+                  });
+                  const content = await rawResponse.json();
+
+                  if(content.hasOwnProperty("Success")) {
+                      location.reload();
+                  }
+              })()
+                }
+            }
+
+            function logout() {
+                localStorage.removeItem("username");
+                window.location.href = "login.html";
+            }
+        </script>
+    </body>
+</html>

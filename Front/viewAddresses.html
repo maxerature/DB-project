@@ -8,6 +8,7 @@
         <title>Products</title>
     </head>
     <body onload="loadAddresses()">
+        <div class="nav"><button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button></div>
         <div id="address-table"></div>
 
         <br>
@@ -170,6 +171,11 @@
                         
                     }
                 })();
+            }
+
+            function logout() {
+                localStorage.removeItem("username");
+                window.location.href = "login.html";
             }
         </script>
     </body>

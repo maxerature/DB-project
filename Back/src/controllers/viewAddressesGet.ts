@@ -59,7 +59,7 @@ export default {
                 con.query(query, function(err, result) {
                     if(err) throw err;
                     let divString = `\
-                    <table>\n\
+                    <table class="blueTable">\n\
                         <tr>\n\
                             <th>Address</th>\n\
                             <th>Active?</th>\n\
