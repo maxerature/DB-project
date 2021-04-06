@@ -38,6 +38,7 @@ export default {
                     <div class="bigNavButton" onclick="window.location='purchaseHistory.html'">
                         View order history
                     </div>
+                    <button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button>
                 </div>`
             } else if(userTypeNum == 1) {
                 divString = `
@@ -51,6 +52,7 @@ export default {
                     <div class="bigNavButton" onclick="window.location='viewUsers.html'">
                         View users
                     </div>
+                    <button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button>
                 </div>`
             } else if(userTypeNum == 2) {
                 divString = `
@@ -67,6 +69,7 @@ export default {
                     <div class="bigNavButton" onclick="window.location='createProduct.html'">
                         Add a product
                     </div>
+                    <button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button>
                 </div>`
             } else {
                 divString = `
