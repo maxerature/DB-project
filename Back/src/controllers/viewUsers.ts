@@ -30,7 +30,8 @@ export default {
                 Customers.firstName,
                 Customers.lastName,
                 Customers.userName,
-                DATE(Customers.dateOfBirth),
+                DATE(Customers.dateOfBirth)
+                    as dateOfBirth,
                 Customers.emailAddress,
                 Customers.phoneNumber,
                 Customers.membershipStatus,
@@ -40,7 +41,6 @@ export default {
                 if(err) throw err;
                 con.query(query, function (err, result) {
                     if(err) throw err;
-                    console.log("Got employees")
                     //Create Customers table
                     divString += `\
                     <h3>Customers</h3>
@@ -63,10 +63,11 @@ export default {
                         } else {
                             status = `Yes`
                         }
+                        console.log(object)
                         divString += `\
                         <tr>
                             <th>${object.firstName} ${object.lastName}</th>
-                            <th>${object.username}</th>
+                            <th>${object.userName}</th>
                             <th>${object.dateOfBirth}</th>
                             <th>${object.emailAddress}</th>
                             <th>${object.phoneNumber}</th>
@@ -89,7 +90,6 @@ export default {
                         if(err) throw err;
                         con.query(query, function (err, result) {
                             if(err) throw err;
-                            console.log("Got suppliers")
                             //Create Customers table
                             divString += `\
                             <h3>Suppliers</h3>
