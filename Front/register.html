@@ -150,76 +150,64 @@
                 if(userType == "customer") {
                     document.getElementById("extraFields").innerHTML = `<p>\n\
     <label for="fname"><b>First Name:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter First Name" id="fname" required>\n\
 </p>\n\
 <p>\n\
     <label for="lname"><b>Last Name:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter Last Name" id="lname" required>\n\
 </p>\n\
 <p>\
     <label for="phoneNumber"><b>Phone Number:</b></label>\n\
-            </p>
-            <p>
+
     <input type="number" placeholder="Enter Last Name" id="phoneNumber" required>\n\
 </p>\
 <p>\
     <label for="dob"><b>Date of Birth:</b></label>\n\
-            </p>
-            <p>
+
     <input type="date" id="dob" required>\n\
 </p>`
                 } else if(userType == "employee") {
                     document.getElementById("extraFields").innerHTML = `<p>\n\
     <label for="fname"><b>First Name:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter First Name" id="fname" required>\n\
 </p>\n\
 <p>\n\
     <label for="lname"><b>Last Name:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter Last Name" id="lname" required>\n\
 </p>\n\
 <p>\
     <label for="phoneNumber"><b>Phone Number:</b></label>\n\
-            </p>
-            <p>
+
     <input type="number" placeholder="Enter Last Name" id="phoneNumber" required>\n\
 </p>\n\
 <p>\
     <label for="dob"><b>Date of Birth:</b></label>\n\
-            </p>
-            <p>
+
     <input type="date" id="dob" required>\n\
 </p>\
 <p>\
     <label for="ssn"><b>SSN:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter SSN" id="ssn" required>\n\
 </p>\
 <p>\
     <label for="position"><b>Position:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter position" id="position" required>\n\
 </p>`
                 } else {
                     document.getElementById("extraFields").innerHTML = `<p>\n\
     <label for="sname"><b>Supplier Name:</b></label>\n\
-            </p>
-            <p>
+
     <input type="text" placeholder="Enter First Name" id="sname" required>\n\
 </p>\n\
 <p>\
     <label for="phoneNumber"><b>Phone Number:</b></label>\n\
-            </p>
-            <p>
+
     <input type="number" placeholder="Enter Last Name" id="phoneNumber" required>\n\
 </p>`
                 }
