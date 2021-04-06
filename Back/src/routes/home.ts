@@ -13,8 +13,8 @@ import PurchaseHistoryLoad from '../controllers/purchaseHistoryLoad'
 import ViewAddressesGet from '../controllers/viewAddressesGet'
 import ViewAddressesSet from '../controllers/viewAddressesSet'
 import ViewAddressesAdd from '../controllers/viewAddressesAdd'
-import supplierproductsView from '../controllers/supplierproductsView'
-import supplierproductsViewReorder from '../controllers/supplierproductsViewReorder'
+import supplierProductsView from '../controllers/supplierProductsView'
+import supplierProductsViewReorder from '../controllers/supplierProductsViewReorder'
 import ViewUsers from '../controllers/viewUsers'
 import LoadMainPage from '../controllers/loadMainPage'
 
@@ -53,9 +53,9 @@ HomeRoutes.post('/viewAddressesSet', ViewAddressesSet.viewAddressesSet)
 
 HomeRoutes.post('/viewAddressesAdd', ViewAddressesAdd.viewAddressesAdd)
 
-HomeRoutes.post('/supplierproductsViewLoad', supplierproductsView.supplierproductsViewLoad)
+HomeRoutes.post('/supplierProductsViewLoad', supplierProductsView.supplierProductsViewLoad)
 
-HomeRoutes.post('/supplierproductsViewReorder', supplierproductsViewReorder.supplierproductsViewReorder)
+HomeRoutes.post('/supplierProductsViewReorder', supplierProductsViewReorder.supplierProductsViewReorder)
 
 HomeRoutes.post('/viewUsers', ViewUsers.viewUsers)
 

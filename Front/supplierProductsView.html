@@ -30,7 +30,7 @@
                 let username = localStorage.getItem('username');
 
                 (async () => {
-                  const rawResponse = await fetch("http://localhost:5000/supplierproductsViewLoad", {
+                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewLoad", {
                       method: "POST",
                       headers: {
                           Accept: "application/json",
@@ -53,7 +53,7 @@
                 }
                 else {
                     (async () => {
-                  const rawResponse = await fetch("http://localhost:5000/supplierproductsViewReorder", {
+                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewReorder", {
                       method: "POST",
                       headers: {
                           Accept: "application/json",

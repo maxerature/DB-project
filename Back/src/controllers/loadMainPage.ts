@@ -59,7 +59,7 @@ export default {
                     <div class="bigNavButton" onclick="window.location='viewAddresses.html'">
                         Change your address
                     </div>
-                    <div class="bigNavButton" onclick="window.location='supplierproductsView.html'">
+                    <div class="bigNavButton" onclick="window.location='supplierProductsView.html'">
                         View your products
                     </div>
                     <div class="bigNavButton" onclick="window.location='createProduct.html'">

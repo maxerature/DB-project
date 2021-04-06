@@ -4,7 +4,7 @@ import { AuthSchema } from "../config/Validation/auth";
 import MySQL from "../config/Init/initTypeMySQL";
 
 export default {
-    supplierproductsViewReorder: async (
+    supplierProductsViewReorder: async (
         req: express.Request,
         res: express.Response,
         next: express.NextFunction

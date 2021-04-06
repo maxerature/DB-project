@@ -15,7 +15,7 @@
             <button type="button" id="logout" class="logoutButton" onclick="window.location.href=`index.html`">
                 <h3>Main Page</h3>
             </button>
-            <button type="button" id="logout" class="logoutButton" onclick="window.location.href=`supplierproductsView.html`">
+            <button type="button" id="logout" class="logoutButton" onclick="window.location.href=`supplierProductsView.html`">
                 <h3>View Your products</h3>
             </button>
             <button type="button" id="logout" class="logoutButton" onclick="window.location.href=`viewAddresses.html`">
@@ -137,7 +137,7 @@
                     const content = await rawResponse.json();
                     if(content.hasOwnProperty("success")) {
                         alert("Product successfully added.")
-                        window.location.href = "supplierproductsView.html"
+                        window.location.href = "supplierProductsView.html"
                     } else if(content.hasOwnProperty("failed")) {
                         alert("Product already exists!")
                     }
