@@ -20,9 +20,11 @@ export default {
             } else if (userType == "employee" ) {
                 userTypeNum = 1;
                 userTypeString = `Employees`
-            } else {
+            } else if (userType == "supplier") {
                 userTypeNum = 2;
                 userTypeString = `Suppliers`
+            } else {
+                userTypeNum = -1;
             }
 
             let divString = ``;
@@ -43,9 +45,6 @@ export default {
             } else if(userTypeNum == 1) {
                 divString = `
                 <div class="bigNav">
-                    <div class="bigNavButton" onclick="window.location='productsListing.html'">
-                        View offered products
-                    </div>
                     <div class="bigNavButton" onclick="window.location='viewAddresses.html'">
                         Change your address
                     </div>
@@ -57,9 +56,6 @@ export default {
             } else if(userTypeNum == 2) {
                 divString = `
                 <div class="bigNav">
-                    <div class="bigNavButton" onclick="window.location='productsListing.html'">
-                        View all products
-                    </div>
                     <div class="bigNavButton" onclick="window.location='viewAddresses.html'">
                         Change your address
                     </div>

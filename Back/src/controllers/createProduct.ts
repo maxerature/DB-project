@@ -17,7 +17,8 @@ export default {
                 id,
                 msrp,
                 reorderCount,
-                orderNumber
+                orderNumber,
+                count
             } = req.body;
 
             var mysql = require('mysql2');
@@ -36,18 +37,18 @@ export default {
                 addresses.addressID\n\
             FROM (Suppliers, Addresses)\n\
             WHERE\n\
-            	username = "Bencraft"\n\
+            	username = "${username}"\n\
                 AND Addresses.userType = 2\n\
                 AND Addresses.active = true\n\
                 AND Addresses.userID = suppliers.supplierID;`;
-
             console.log(query);
             con.connect(function(err) {
                 if(err) throw err;
                 con.query(query, function(err, result) {
                     if(err) throw err;
-
+                    console.log(result);
                     if(result[0].supplierID) {
+                        
                         let userid = result[0].supplierID;
                         let addressid = result[0].addressID;
 
@@ -96,7 +97,7 @@ export default {
                                                 ${msrp},\n\
                                                 ${reorderCount},\n\
                                                 ${orderNumber},\n\
-                                                100,\n\
+                                                ${count},\n\
                                                 ${addressid}\n\
                                             )`
                                         }
@@ -118,7 +119,7 @@ export default {
                                             \"${name}\",\n\
                                             ${msrp},\n\
                                             ${orderNumber},\n\
-                                            100\n\
+                                            ${count}\n\
                                         )`
                                     } else {
                                         query = `\
@@ -136,7 +137,7 @@ export default {
                                             ${msrp},\n\
                                             \"${name}\",\n\
                                             ${msrp},\n\
-                                            100\n\
+                                            ${count}\n\
                                         )`
                                     }
 

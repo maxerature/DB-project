@@ -29,6 +29,8 @@ export default {
             WHERE\n\
                 productID = ${id}`
 
+                console.log(query);
+
             con.connect(function (err) {
                 if(err) throw err;
                 con.query(query, function (err, result) {

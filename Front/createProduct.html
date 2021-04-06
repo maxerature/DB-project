@@ -46,6 +46,17 @@
                 </p>
 
                 <p>
+                    <label for="count"><b>Number Available: </b></label>
+                    <input
+                        class="input-field"
+                        type="number"
+                        id="count"
+                        placeholder="Amount available initially"
+                        required
+                    />
+                </p>
+
+                <p>
                     <label for="reorderCount"><b>Reorder at: </b></label>
                     <input
                         class="input-field"
@@ -80,12 +91,14 @@
                 document.getElementById("name").checkValidity();
                 document.getElementById("id").checkValidity();
                 document.getElementById("msrp").checkValidity();
+                document.getElementById("count").checkValidity();
                 document.getElementById("reorderCount").checkValidity();
                 document.getElementById("orderNumber").checkValidity();
 
                 document.getElementById("name").reportValidity();
                 document.getElementById("id").reportValidity();
                 document.getElementById("msrp").reportValidity();
+                document.getElementById("count").reportValidity();
                 document.getElementById("reorderCount").reportValidity();
                 document.getElementById("orderNumber").reportValidity();
 
@@ -95,6 +108,7 @@
                 const msrp = document.getElementById("msrp").value;
                 const reorderCount = document.getElementById("reorderCount").value;
                 const orderNumber = document.getElementById("orderNumber").value;
+                const count = document.getElementById("count").value;
 
                 const username = localStorage.getItem('username');
 
@@ -105,9 +119,15 @@
                             Accept: "application/json",
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ username, name, id, msrp, reorderCount, orderNumber}),
+                        body: JSON.stringify({ username, name, id, msrp, reorderCount, orderNumber, count}),
                     });
                     const content = await rawResponse.json();
+                    if(content.hasOwnProperty("success")) {
+                        alert("Product successfully added.")
+                        window.location.href = "supplierProductsView.html"
+                    } else if(content.hasOwnProperty("failed")) {
+                        alert("Product already exists!")
+                    }
                 })();
             }
 
