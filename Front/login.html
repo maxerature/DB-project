@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href = "Style.css">
     <title>Login</title>
-  </head>
+   </head>
   <body>
+  <div class="box">
     <form id="login">
       <div class="container">
         <p>
-          <label for="uname"><b>Username: </b></label>
+          <label for="uname"><b>&#127877 Username: </b></label></p>
+
+        <p>
           <input
             class="input-field"
             type="text"
@@ -23,7 +26,9 @@
         </p>
 
         <p>
-          <label for="psw"><b>Password: </b></label>
+          <label for="psw"><b>&#128190 Password: </b></label></p>
+
+        <p>
           <input
             class="input-field"
             type="password"
@@ -44,7 +49,7 @@
         </p>
 
         <p>
-          <button onclick="AuthUser()">Login</button>
+          <button onclick="AuthUser()" class="bigSigbutton">Login</button>
         </p>
 
         <p>
@@ -52,6 +57,7 @@
         </p>
       </div>
     </form>
+    </div>
 
 
     <script>
