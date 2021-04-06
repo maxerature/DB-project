@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href = "Style.css">
+        <title>Team 8</title>
+    </head>
+    <body onload = "getContents()">
+        <h3>Team 8 Point of Sale Incorporated</h3>
+        <div id="contents"></div>
+
+        <script>
+            function getContents() {
+                let userType = localStorage.getItem("userType");
+                (async () => {
+                    const rawResponse = await fetch("http://localhost:5000/loadMainPage", {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({userType})
+                    });
+                    const content = await rawResponse.json();
+                    if(content.hasOwnProperty("success"))
+                    document.getElementById("contents").innerHTML = content.success;
+                })();
+            }
+        </script>
+    </body>
+</html>

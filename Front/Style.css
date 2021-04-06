@@ -145,3 +145,38 @@ table, th{
 	height: 5%;
 	background-color: rgb(15, 163, 177);
 }
+
+.bigNav {
+	width: 25%;
+	margin: auto;
+	padding: 5%;
+	border: 0.1% solid green;
+}
+
+.bigNavButton {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #9eb5af 5%, #6c7c7c 100%);
+	background-color:#9eb5af;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:25px;
+	font-weight:bold;
+	padding:5px 8px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+	height: auto;
+	margin:auto;
+}
+
+.bigNavButton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #9eb5af 100%);
+	background-color:#6c7c7c;
+}
+.bigNavButton:active {
+	position:relative;
+	top:1px;
+}

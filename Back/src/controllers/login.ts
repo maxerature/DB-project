@@ -49,11 +49,10 @@ export default {
           if(result == null || result == '') {
             res.json({error: "Error: Login failed\nUsername does not exist, or password was typed incorrectly."});
           } else {
-            console.log(result);
             if (result[0].emailAddress == '') {
-              res.json({ success: "ProfileManage.html" });
+              res.json({ success: "register.html" });
             } else {
-              res.json({success: "ProfileComplete.html"})
+              res.json({success: "index.html"})
             }
           }
         });
