@@ -22,19 +22,19 @@ export default {
       var mysql = require('mysql2');
 
       var con = await mysql.createConnection({
-          host: "localhost",
-          user: "root",
-          password: "password",
-          port: 3306,
-          database: "databaseproject"
-      });
+        host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
+        user: "root",
+        password: "databaseproject",
+        port: 3306,
+        database: "databases_project"
+    });
 
       //Set query
       let query = `
       SELECT\n\
         name,\n\
         listPrice\n\
-      FROM Products\n\
+      FROM products\n\
       WHERE\n`
 
       //Attach product numbers

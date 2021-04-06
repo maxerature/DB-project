@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href = "Style.css">
-    <title>View Supplier Products</title>
+    <title>View Supplier products</title>
     </head>
-    <body onload="loadProducts()">
+    <body onload="loadproducts()">
         <div class="nav">
             <button type="button" id="logout" class="logoutButton" onclick="logout()">
                 <h3>Log Out</h3>
@@ -26,11 +26,11 @@
         <div id="productsTable"></div>
 
         <script>
-            function loadProducts() {
+            function loadproducts() {
                 let username = localStorage.getItem('username');
 
                 (async () => {
-                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewLoad", {
+                  const rawResponse = await fetch("http://localhost:5000/supplierproductsViewLoad", {
                       method: "POST",
                       headers: {
                           Accept: "application/json",
@@ -53,7 +53,7 @@
                 }
                 else {
                     (async () => {
-                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewReorder", {
+                  const rawResponse = await fetch("http://localhost:5000/supplierproductsViewReorder", {
                       method: "POST",
                       headers: {
                           Accept: "application/json",

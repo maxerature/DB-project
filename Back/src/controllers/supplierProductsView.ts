@@ -4,7 +4,7 @@ import { AuthSchema } from "../config/Validation/auth";
 import MySQL from "../config/Init/initTypeMySQL";
 
 export default {
-    supplierProductsViewLoad: async (
+    supplierproductsViewLoad: async (
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
@@ -15,11 +15,11 @@ export default {
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Setup string to parse into div
@@ -49,10 +49,12 @@ export default {
                 MSRP,\n\
                 listPrice,\n\
                 count\n\
-            FROM (Products, Addresses, Suppliers)\n\
+            FROM (products, addresses, suppliers)\n\
             WHERE\n\
-                addresses.addressID = products.addressID\n\
-                AND suppliers.username = \"${username}\"`
+                suppliers.username = \"${username}\"\n\
+                AND addresses.userType = 2\n\
+                AND addresses.userID = suppliers.supplierID\n\
+                AND addresses.addressID = products.addressID`
 
             //Get products
             con.connect(function(err) {

@@ -16,11 +16,11 @@ export default {
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Set usertype number
@@ -28,13 +28,13 @@ export default {
             let userTypeString = ``;
             if(userType == "customer") {
                 userTypeNum = 0;
-                userTypeString = `Customers`
+                userTypeString = `customers`
             } else if (userType == "employee" ) {
                 userTypeNum = 1;
-                userTypeString = `Employees`
+                userTypeString = `employees`
             } else {
                 userTypeNum = 2;
-                userTypeString = `Suppliers`
+                userTypeString = `suppliers`
             }
 
             //Set Query to get userID
@@ -55,7 +55,7 @@ export default {
                     console.log(id);
                     //Set Query to add addresses
                     let query = `\
-                    INSERT INTO Addresses (\n\
+                    INSERT INTO addresses (\n\
                         userType,\n\
                         userID,\n\
                         addressLine1,\n\

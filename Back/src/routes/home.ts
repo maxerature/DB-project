@@ -6,15 +6,15 @@ import RegisterController from '../controllers/registerCustomer'
 import RegisterEmployee from '../controllers/registerEmployee'
 import RegisterSupplier from '../controllers/registerSupplier'
 import CreateProduct from '../controllers/createProduct'
-import ProductsListing from '../controllers/productListing'
+import productsListing from '../controllers/productListing'
 import CheckoutPopulate from '../controllers/checkoutPopulate'
 import Checkout from '../controllers/checkout'
 import PurchaseHistoryLoad from '../controllers/purchaseHistoryLoad'
 import ViewAddressesGet from '../controllers/viewAddressesGet'
 import ViewAddressesSet from '../controllers/viewAddressesSet'
 import ViewAddressesAdd from '../controllers/viewAddressesAdd'
-import supplierProductsView from '../controllers/supplierProductsView'
-import supplierProductsViewReorder from '../controllers/supplierProductsViewReorder'
+import supplierproductsView from '../controllers/supplierproductsView'
+import supplierproductsViewReorder from '../controllers/supplierproductsViewReorder'
 import ViewUsers from '../controllers/viewUsers'
 import LoadMainPage from '../controllers/loadMainPage'
 
@@ -39,7 +39,7 @@ HomeRoutes.post('/registersupplier', RegisterSupplier.registersupplier)
 
 HomeRoutes.post('/createproduct', CreateProduct.createProduct)
 
-HomeRoutes.post('/productslisting', ProductsListing.productsListing)
+HomeRoutes.post('/productslisting', productsListing.productsListing)
 
 HomeRoutes.post('/checkoutPopulate', CheckoutPopulate.checkoutPopulate)
 
@@ -53,9 +53,9 @@ HomeRoutes.post('/viewAddressesSet', ViewAddressesSet.viewAddressesSet)
 
 HomeRoutes.post('/viewAddressesAdd', ViewAddressesAdd.viewAddressesAdd)
 
-HomeRoutes.post('/supplierProductsViewLoad', supplierProductsView.supplierProductsViewLoad)
+HomeRoutes.post('/supplierproductsViewLoad', supplierproductsView.supplierproductsViewLoad)
 
-HomeRoutes.post('/supplierProductsViewReorder', supplierProductsViewReorder.supplierProductsViewReorder)
+HomeRoutes.post('/supplierproductsViewReorder', supplierproductsViewReorder.supplierproductsViewReorder)
 
 HomeRoutes.post('/viewUsers', ViewUsers.viewUsers)
 

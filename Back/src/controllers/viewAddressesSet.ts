@@ -16,11 +16,11 @@ export default {
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Set usertype number
@@ -28,25 +28,25 @@ export default {
             let userTypeString = ``;
             if(userType == "customer") {
                 userTypeNum = 0;
-                userTypeString = `Customers`
+                userTypeString = `customers`
             } else if (userType == "employee" ) {
                 userTypeNum = 1;
-                userTypeString = `Employees`
+                userTypeString = `employees`
             } else {
                 userTypeNum = 2;
-                userTypeString = `Suppliers`
+                userTypeString = `suppliers`
             }
 
             //Set Query to unset all addresses
             let query = `\
             UPDATE (
-                Addresses,
+                addresses,
                 ${userTypeString}\n\
                 )\n\
             SET active = false\n\
             WHERE
                 userType = ${userTypeNum}\n\
-                AND ${userTypeString}.${userType}ID = Addresses.userID\n\
+                AND ${userTypeString}.${userType}ID = addresses.userID\n\
                 AND ${userTypeString}.username = \"${username}\";`
 
             //Run query
@@ -57,7 +57,7 @@ export default {
 
                     //Set desired address as active.
                     query = `\
-                    UPDATE Addresses \n\
+                    UPDATE addresses \n\
                     SET addresses.active = true\n\
                     WHERE\n\
                         addressID = ${num}`

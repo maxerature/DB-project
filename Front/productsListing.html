@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href = "Style.css">
-    <title>Products</title>
+    <title>products</title>
   </head>
-  <body onload="loadProducts()">
+  <body onload="loadproducts()">
     <div class="nav">
         <button type="button" id="logout" class="logoutButton" onclick="logout()">
             <h3>Log Out</h3>
@@ -22,7 +22,7 @@
             <h3>View Addresses</h3>
         </button>
     </div>
-      <h1>Products</h1>
+      <h1>products</h1>
       <div id="productsTable"></div>
 
       <button type="button" id="checkout" onclick="window.location.href =`checkout.html`"><h3>Checkout</h3></button>
@@ -31,7 +31,7 @@
       
       
       <script>
-          function loadProducts() {
+          function loadproducts() {
               
               (async () => {
                   const rawResponse = await fetch("http://localhost:5000/productsListing", {

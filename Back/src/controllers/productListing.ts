@@ -13,11 +13,11 @@ export default {
             //Setup mysql
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Setup string to parse into div
@@ -50,7 +50,7 @@ export default {
                 listPrice,\n\
                 count,\n\
                 productID
-            FROM (Products, Addresses, Suppliers)\n\
+            FROM (products, addresses, suppliers)\n\
             WHERE\n\
                 addresses.addressID = products.addressID\n\
                 AND products.supplierID = suppliers.supplierID;`

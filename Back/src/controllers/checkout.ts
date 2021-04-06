@@ -19,11 +19,11 @@ export default {
             var mysql = require('mysql2');
 
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Create Transaction
@@ -33,7 +33,7 @@ export default {
             let query = ``;
             if(tType == "check") {
                 query = `\
-                INSERT INTO Transactions(\n\ 
+                INSERT INTO transactions(\n\ 
                     transactionComplete,\n\
                     paidWCheck,\n\
                     paidWCredit,\n\
@@ -49,7 +49,7 @@ export default {
                 )`
             } else if(tType == "card") {
                 query = `\
-                INSERT INTO Transactions (\n\ 
+                INSERT INTO transactions (\n\ 
                     transactionComplete,\n\
                     paidWCheck,\n\
                     paidWCredit,\n\
@@ -67,7 +67,7 @@ export default {
                 )`
             } else {
                 query = `\
-                INSERT INTO Transactions (\n\ 
+                INSERT INTO transactions (\n\ 
                     transactionComplete,\n\
                     paidWCheck,\n\
                     paidWCredit,\n\
@@ -93,20 +93,22 @@ export default {
 
                     //Get user ID
                     let query = `\
-                    SELECT CustomerID\n\
-                    FROM Customers\n\
+                    SELECT customerID\n\
+                    FROM customers\n\
                     WHERE\n\
                         username = \"${username}\";`
 
                     con.connect(function(err) {
                         if(err) throw err;
                         con.query(query, function (err, result) {
-                            let userID = result[0].CustomerID;
+                            console.log(result);
+                            let userID = result[0].customerID;
+                            console.log("UserID: " + userID)
 
                             //Get user address
                             let query = `\
-                            SELECT AddressID\n\
-                            FROM Addresses\n\
+                            SELECT addressID\n\
+                            FROM addresses\n\
                             WHERE\n\
                                 userID = ${userID}\n\
                                 AND active = true;`
@@ -114,10 +116,12 @@ export default {
                             con.connect(function (err) {
                                 if(err) throw err;
                                 con.query(query, function (err, result) {
-                                    let addressID = result[0].AddressID;
+                                    console.log(result);
+                                    let addressID = result[0].addressID;
+                                    console.log("AddressID: " + addressID)
 
                                     let query = `\
-                                    INSERT INTO Orders (\n\
+                                    INSERT INTO orders (\n\
                                         purchaseDate,\n\
                                         customerID,\n\
                                         addressID,\n\
@@ -140,7 +144,7 @@ export default {
                                             for(let i=0; i< unique.length; i++) {
                                                 let object=unique[i];
                                                 let query = `\
-                                                INSERT INTO Cartobjects (\n\
+                                                INSERT INTO cartobjects (\n\
                                                     orderID,\n\
                                                     productID,\n\
                                                     count\n\
@@ -159,7 +163,7 @@ export default {
                                                     con.query(query, function(err, result) {
                                                         if(err) throw err;
                                                         let query = `\
-                                                        UPDATE Products\n\
+                                                        UPDATE products\n\
                                                         SET count=count-${counts[i]}\n\
                                                         WHERE\n\
                                                             productID = ${object}`
@@ -180,14 +184,6 @@ export default {
                             })
                         })
                     })
-
-
-
-
-                    // let query = `\
-                    // INSERT INTO Orders\n\
-                    //     purchaseDate,
-                    //     customerID`
                 })
             })
             res.json({success: "Successfully placed order."})

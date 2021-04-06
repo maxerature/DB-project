@@ -4,7 +4,7 @@ import { AuthSchema } from "../config/Validation/auth";
 import MySQL from "../config/Init/initTypeMySQL";
 
 export default {
-    supplierProductsViewReorder: async (
+    supplierproductsViewReorder: async (
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
@@ -15,16 +15,16 @@ export default {
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Setup query to update counts
             let query = `\
-            UPDATE Products\n\
+            UPDATE products\n\
             SET count=count+${count}\n\
             WHERE\n\
                 productID = ${id}`

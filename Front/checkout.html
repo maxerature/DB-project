@@ -11,7 +11,7 @@
     <div class="nav"><button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button> <p class="inline"><a href="purchaseHistory.html">View purchase history</a></p><button type="button" id="goback" onclick="window.location.href =`productsListing.html`"><h3>Go Back</h3></button></div>
     
       <H1>Cart</H1>
-      <div id="cartObjects"></div>
+      <div id="cartobjects"></div>
 
       <form id="payment">
           <div class="container">
@@ -89,7 +89,7 @@
                   });
                   const content = await rawResponse.json();
                   if(content.hasOwnProperty("success")) {
-                      document.getElementById("cartObjects").innerHTML = content.success;
+                      document.getElementById("cartobjects").innerHTML = content.success;
                       document.getElementById("total").innerHTML = content.price;
                   }
             })()

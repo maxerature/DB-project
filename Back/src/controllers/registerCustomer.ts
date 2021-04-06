@@ -29,16 +29,16 @@ export default {
       var mysql = require('mysql2');
 
       var con = await mysql.createConnection({
-          host: "localhost",
-          user: "root",
-          password: "password",
-          port: 3306,
-          database: "databaseproject"
-      });
+        host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
+        user: "root",
+        password: "databaseproject",
+        port: 3306,
+        database: "databases_project"
+    });
 
       let query = `\
 SELECT COUNT(*)\n\
-FROM Customers\n\
+FROM customers\n\
 WHERE\n\
     username = \"${username}\"`
 
@@ -52,7 +52,7 @@ WHERE\n\
             } else {
                 console.log("sucess");
                 let query = `\
-                INSERT INTO Customers (\n\
+                INSERT INTO customers (\n\
                     membershipStatus,\n\
                     dateOfBirth,\n\
                     emailAddress,\n\
@@ -88,7 +88,7 @@ WHERE\n\
                             console.log("Address1: " + addr1 + "\nAddress2: " + addr2 + "\nCity: " + city + "\nState: " + state + "\nZipcode: " + zipcode);
 
                             let query = `\
-                            INSERT INTO Addresses (\n\
+                            INSERT INTO addresses (\n\
                                 userType,\n\
                                 userID,\n\
                                 addressLine1,\n\

@@ -13,11 +13,11 @@ export default {
             //Setup mysql
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Setup string to parse into div
@@ -36,7 +36,7 @@ export default {
             //Setup query to get products
             let query = `
             SELECT * \n\
-            FROM Products`
+            FROM products`
 
             //Get products
             con.connect(function(err) {
@@ -60,7 +60,7 @@ export default {
                             nation,\n\
                             zipcode\n\
                         \n\
-                        FROM Addresses\n\
+                        FROM addresses\n\
                         WHERE\n\
                             addresses.userType = 2`
                         
@@ -77,7 +77,7 @@ export default {
                                 SELECT \n\
                                     supplierID,\n\
                                     supplierName\n\
-                                FROM Suppliers`
+                                FROM suppliers`
                                 con.connect(function(err) {
                                     if(err) throw err;
                                     con.query(query, function(err, result) {

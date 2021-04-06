@@ -38,11 +38,11 @@ export default {
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             let divString = ``;
@@ -64,8 +64,8 @@ export default {
                 transactions.bankNumber,
                 transactions.cardNumber,
                 transactions.total
-            FROM (Orders, Addresses, Transactions)
-            INNER JOIN Customers
+            FROM (orders, addresses, transactions)
+            INNER JOIN customers
             ON orders.customerID = customers.customerID
             WHERE 
             	customers.username = \"${username}\"
@@ -125,12 +125,12 @@ export default {
                         SELECT\n\
                         	products.MSRP,\n\
                             products.name,\n\
-                            CartObjects.count\n\
-                        FROM CartObjects\n\
-                        INNER JOIN (Products, Orders)\n\
-                        ON Products.productID = CartObjects.productID\n\
+                            cartobjects.count\n\
+                        FROM cartobjects\n\
+                        INNER JOIN (products, orders)\n\
+                        ON products.productID = cartobjects.productID\n\
                         WHERE\n\
-                        	CartObjects.orderID = orders.orderID\n\
+                        	cartobjects.orderID = orders.orderID\n\
                             AND orders.orderID = ${object.orderID};`
 
                          let str = await getWords(con, query)

@@ -15,11 +15,11 @@ export default {
 
       let selectTable = "";
       if(userType == "customer") {
-        selectTable = "Customers"
+        selectTable = "customers"
       } else if (userType == "employee") {
-        selectTable = "Employees"
+        selectTable = "employees"
       } else {
-        selectTable = "Suppliers"
+        selectTable = "suppliers"
       }
 
       let currUser: any;
@@ -27,12 +27,12 @@ export default {
       var mysql = require('mysql2');
 
       var con = await mysql.createConnection({
-          host: "localhost",
-          user: "root",
-          password: "password",
-          port: 3306,
-          database: "databaseproject"
-      });
+        host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
+        user: "root",
+        password: "databaseproject",
+        port: 3306,
+        database: "databases_project"
+    });
 
       let query = `SELECT\n\
         emailAddress\n\

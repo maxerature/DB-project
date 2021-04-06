@@ -23,11 +23,11 @@ export default {
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
-                host: "localhost",
+                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
-                database: "databaseproject"
+                database: "databases_project"
             });
 
             //Get supplier ID
@@ -35,12 +35,12 @@ export default {
             SELECT \n\
             	suppliers.supplierID,\n\
                 addresses.addressID\n\
-            FROM (Suppliers, Addresses)\n\
+            FROM (suppliers, addresses)\n\
             WHERE\n\
             	username = "${username}"\n\
-                AND Addresses.userType = 2\n\
-                AND Addresses.active = true\n\
-                AND Addresses.userID = suppliers.supplierID;`;
+                AND addresses.userType = 2\n\
+                AND addresses.active = true\n\
+                AND addresses.userID = suppliers.supplierID;`;
             console.log(query);
             con.connect(function(err) {
                 if(err) throw err;
@@ -55,7 +55,7 @@ export default {
                         //Make sure no duplicate product ids for the same supplier
                         let query = `\
                         SELECT COUNT(*)\n\
-                        FROM Suppliers, Products
+                        FROM suppliers, products
                         WHERE\n\
                             suppliers.supplierID = ${userid}\n\
                             AND supplierCode = \"${id}\";`
@@ -78,7 +78,7 @@ export default {
                                             res.json({Error:  "If automatic reorder is active, product count must be specified!"});
                                         } else {
                                             query = `\
-                                            INSERT INTO Products (\n\
+                                            INSERT INTO products (\n\
                                                 supplierID,\n\
                                                 supplierCode,\n\
                                                 MSRP,\n\
@@ -103,7 +103,7 @@ export default {
                                         }
                                     } else if(orderNumber) {
                                         query = `\
-                                        INSERT INTO Products (\n\
+                                        INSERT INTO products (\n\
                                             supplierID,\n\
                                             supplierCode,\n\
                                             MSRP,\n\
@@ -123,7 +123,7 @@ export default {
                                         )`
                                     } else {
                                         query = `\
-                                        INSERT INTO Products (\n\
+                                        INSERT INTO products (\n\
                                             supplierID,\n\
                                             supplierCode,\n\
                                             MSRP,\n\
