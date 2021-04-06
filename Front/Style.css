@@ -180,13 +180,34 @@ table, th{
 	position:relative;
 	top:1px;
 }
+.bigSigbutton {
+  color: #FFF;
+  background-color: #ff6666;
+  font-size: 20px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #ff6666;
+  margin-bottom: 10px;
+}
 .box {
         padding: 5px 10px;
-        background-color: #e6e6e6
+        background-color: #ffcccc
+}
+.tagSize {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+.number {
+  background-color: #ff8080;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 100%;
 }
 
-.col-25,
-.col-50,
-.col-75 {
-        padding: 0 16px;
-}
