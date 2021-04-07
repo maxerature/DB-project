@@ -118,7 +118,7 @@
                 let userType = localStorage.getItem('userType');
 
                 (async () => {
-                    const rawResponse = await fetch("http://http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com/viewAddressesGet", {
+                    const rawResponse = await fetch("http://http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000/viewAddressesGet", {
                         method: "POST",
                         headers: {
                             Accept: "application/json",
@@ -138,7 +138,7 @@
                 let userType = localStorage.getItem('userType');
 
                 (async () => {
-                    const rawResponse = await fetch("http://http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com/viewAddressesSet", {
+                    const rawResponse = await fetch("http://http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000/viewAddressesSet", {
                         method: "POST",
                         headers: {
                             Accept: "application/json",
@@ -170,7 +170,7 @@
                 }
 
                 (async () => {
-                    const rawResponse = await fetch(`http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com/viewAddressesAdd`, {
+                    const rawResponse = await fetch(`http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000/viewAddressesAdd`, {
                         method: "POST",
                         headers: {
                             Accept: "application/json",
