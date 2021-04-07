@@ -15,7 +15,7 @@
             function getContents() {
                 let userType = localStorage.getItem("userType");
                 (async () => {
-                    const rawResponse = await fetch("http://localhost:5000/loadMainPage", {
+                    const rawResponse = await fetch("ec2-3-129-52-46.us-east-2.compute.amazonaws.com/loadMainPage", {
                         method: "POST",
                         headers: {
                             Accept: "application/json",

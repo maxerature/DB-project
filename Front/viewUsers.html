@@ -24,7 +24,7 @@
         <script>
             function loadUsers() {
                 (async () => {
-                    const rawResponse = await fetch("http://localhost:5000/viewUsers", {
+                    const rawResponse = await fetch("ec2-3-129-52-46.us-east-2.compute.amazonaws.com/viewUsers", {
                         method: "POST",
                         headers: {
                             Accept: "application/json",

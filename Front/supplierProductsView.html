@@ -30,7 +30,7 @@
                 let username = localStorage.getItem('username');
 
                 (async () => {
-                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewLoad", {
+                  const rawResponse = await fetch("ec2-3-129-52-46.us-east-2.compute.amazonaws.com/supplierProductsViewLoad", {
                       method: "POST",
                       headers: {
                           Accept: "application/json",
@@ -53,7 +53,7 @@
                 }
                 else {
                     (async () => {
-                  const rawResponse = await fetch("http://localhost:5000/supplierProductsViewReorder", {
+                  const rawResponse = await fetch("ec2-3-129-52-46.us-east-2.compute.amazonaws.com/supplierProductsViewReorder", {
                       method: "POST",
                       headers: {
                           Accept: "application/json",
