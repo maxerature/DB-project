@@ -1,11 +1,11 @@
 import { createPool } from "mysql2";
 let pass = "password"
 var MySQL = createPool({
-  host: "localhost",
+  host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
   user: "root",
-  password: pass,
+  password: "databaseproject",
   port: 3306,
-  database: "softwareproject",
+  database: "databases_project",
 });
 
 MySQL.getConnection((err) => {
