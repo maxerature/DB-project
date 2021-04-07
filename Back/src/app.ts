@@ -15,6 +15,6 @@ app.use("/", HomeRoutes);
 app.use(Config.Errors.Error404);
 app.use(Config.Errors.ErrorHandlder);
 
-export default app.listen(Config.Env.server.PORT, () =>
-  console.log(`Server on => http://localhost:${Config.Env.server.PORT}`)
+export default app.listen(Config.Env.server.PORT, `0.0.0.0`, () =>
+  console.log(`Server on => ${Config.Env.server.PORT}`)
 );
