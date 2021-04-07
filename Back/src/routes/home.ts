@@ -17,6 +17,7 @@ import supplierProductsView from '../controllers/supplierProductsView'
 import supplierProductsViewReorder from '../controllers/supplierProductsViewReorder'
 import ViewUsers from '../controllers/viewUsers'
 import LoadMainPage from '../controllers/loadMainPage'
+import Test from '../controllers/test'
 
 
 export const HomeRoutes = express.Router()
@@ -60,6 +61,10 @@ HomeRoutes.post('/supplierProductsViewReorder', supplierProductsViewReorder.supp
 HomeRoutes.post('/viewUsers', ViewUsers.viewUsers)
 
 HomeRoutes.post('/loadMainPage', LoadMainPage.loadMainPage)
+
+HomeRoutes.get('/test', function (req, res) {
+	res.send('GET request to the homepage')
+  })
 
 
 
