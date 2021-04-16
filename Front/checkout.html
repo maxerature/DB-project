@@ -116,7 +116,7 @@
           }
 
           function check() {
-            let total = Number(document.getElementById('total').innerHTML);
+            let total = parseFloat(document.getElementById('total').innerHTML);
             let cart = localStorage.getItem('cart');
             let username = localStorage.getItem('username');
             let tType = document.getElementById("ptype").value;
