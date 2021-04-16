@@ -116,7 +116,7 @@
           }
 
           function check() {
-            let total = parseFloat(document.getElementById('total').innerHTML);
+            let total = Number(document.getElementById('total').innerHTML);
             let cart = localStorage.getItem('cart');
             let username = localStorage.getItem('username');
             let tType = document.getElementById("ptype").value;
@@ -124,6 +124,7 @@
             if(tType != "check") {
                 tnum = document.getElementById("number").value
             }
+            console.log("Total:" + total);
 
             cart = JSON.parse(cart);
             let unique = [];
