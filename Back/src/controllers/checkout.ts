@@ -14,7 +14,7 @@ export default {
             const {unique, counts, tType, tnum, username, total} = req.body;
 
             let first = true;
-            console.log(total);
+            console.log("Total:" + total);
 
             //Connect to sql
             var mysql = require('mysql2');
