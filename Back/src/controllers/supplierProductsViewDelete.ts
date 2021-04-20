@@ -11,7 +11,7 @@ export default {
     ) => {
         try {
             //Setup mysql
-            const {id, count} = req.body;
+            const {id} = req.body;
 
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
@@ -24,7 +24,7 @@ export default {
 
             //Setup query to update counts
             let query = `\
-            DELETE FROM  products\n\
+            DELETE FROM products\n\
             WHERE\n\
                 productID = ${id}`
 
