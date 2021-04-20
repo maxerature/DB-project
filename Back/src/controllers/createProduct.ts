@@ -119,7 +119,8 @@ export default {
                                             \"${name}\",\n\
                                             ${msrp},\n\
                                             ${orderNumber},\n\
-                                            ${count}\n\
+                                            ${count},\n\
+                                            ${addressid}\n\
                                         )`
                                     } else {
                                         query = `\
@@ -137,7 +138,8 @@ export default {
                                             ${msrp},\n\
                                             \"${name}\",\n\
                                             ${msrp},\n\
-                                            ${count}\n\
+                                            ${count},\n\
+                                            ${addressid}\n\
                                         )`
                                     }
 
