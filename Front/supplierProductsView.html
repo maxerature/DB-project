@@ -85,7 +85,7 @@
                   const content = await rawResponse.json();
 
                   if(content.hasOwnProperty("Success")) {
-                      document.getElementById("productsTable").innerHTML = content.Success;
+                        location.reload();
                   }
               })()
             }
