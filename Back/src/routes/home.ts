@@ -15,9 +15,9 @@ import ViewAddressesSet from '../controllers/viewAddressesSet'
 import ViewAddressesAdd from '../controllers/viewAddressesAdd'
 import supplierProductsView from '../controllers/supplierProductsView'
 import supplierProductsViewReorder from '../controllers/supplierProductsViewReorder'
+import supplierProductsViewDelete from '../controllers/supplierProductsViewDelete'
 import ViewUsers from '../controllers/viewUsers'
 import LoadMainPage from '../controllers/loadMainPage'
-import Test from '../controllers/test'
 
 
 export const HomeRoutes = express.Router()
@@ -62,9 +62,7 @@ HomeRoutes.post('/viewUsers', ViewUsers.viewUsers)
 
 HomeRoutes.post('/loadMainPage', LoadMainPage.loadMainPage)
 
-HomeRoutes.get('/test', function (req, res) {
-	res.send('GET request to the homepage')
-  })
+HomeRoutes.post('/supplierProductsViewDelete', supplierProductsViewDelete.supplierProductsViewDelete)
 
 
 

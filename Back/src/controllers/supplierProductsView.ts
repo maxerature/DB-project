@@ -32,6 +32,7 @@ export default {
                     <th>Amount in Stock</th>\n\
                     <th>Reorder</th>\n\
                     <th>Ships From</th>\n\
+                    <th>Delete</th>\n\
                 </tr>`;
 
             //Setup query to get products
@@ -78,6 +79,7 @@ export default {
                                     <button type="button" onclick="reorder(${object.productID})">Reorder</button>
                                 </form></th>\n\
                             <th>${addr}</th>\n\
+                            <th><button type="button" onclick="deleteProduct(${object.productID})">Delete</button>\n\
                         </tr>\n`;
                     }
                     divString += `</table>`;
