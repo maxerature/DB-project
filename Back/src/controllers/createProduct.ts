@@ -110,7 +110,8 @@ export default {
                                             name,\n\
                                             listPrice,\n\
                                             orderCount,\n\
-                                            count\n\
+                                            count,\n\
+                                            addressID
                                         )\n\
                                         VALUES (\n\
                                             ${userid},\n\
@@ -130,7 +131,8 @@ export default {
                                             MSRP,\n\
                                             name,\n\
                                             listPrice,\n\
-                                            count\n\
+                                            count,\n\
+                                            addressID
                                         )\n\
                                         VALUES (\n\
                                             ${userid},\n\
