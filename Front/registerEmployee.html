@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href = "Style.css">
+    <title>Registration Account</title>
+    <label><b>Employee Sign Up</b></label>
+</head>
+<body>
+
+<div class="box">
+<h1 class="tagSize">Employee Sign up</h1>
+	<h class="tagSize"><span class="number">1</span><u>Account Information</u></h>
+    <!-- <p>
+        <label for "Utype"><b>User Type:</b></label>
+          <select name="Utype" id="Utype" onchange="getFields()">
+            <option value="customer">Customer</option>
+            <option value="employee">Employee</option>
+            <option value="supplier">Supplier</option>
+          </select>
+    </p> -->
+
+    <p>
+        <label class="line" for="username"><b>Username:</b></label>
+        <input type="text" placeholder="Enter Username" id="username" required>
+    </p>
+    <p>
+        <label class="line"for="password"><b>Password:</b></label>
+        <input class="line" type="text" placeholder="Enter Password" id="password" required>
+    </p>
+    <p>
+        <label for="confirmPassword"><b>Confirm Password:</b></label>
+        <input type="text" placeholder="Confirm Password" id="confirmPassword" required>
+    </p>
+    <p>
+        <label for="email"><b>Email Address:</b></label>
+        <input type="text" placeholder="Enter Email Address" id="email" required>
+    </p>
+    <div id="extraFields">
+    <h class="tagSize"><span class="number">2</span><u>User Information</u></h>
+    <p>
+        <label for="fname"><b>First Name:</b></label>
+        <input type="text" placeholder="Enter First Name" id="fname" required>
+    </p>
+    <p>
+        <label for="lname"><b>Last Name:</b></label>
+        <input type="text" placeholder="Enter Last Name" id="lname" required>
+    </p>
+    <p>
+        <label for="phoneNumber"><b>Phone Number:</b></label>
+        <input type="number" placeholder="Enter Phone Number" id="phoneNumber" required>
+    </p>
+    <p>
+        <label for="dob"><b>Date of Birth:</b></label>
+    
+        <input type="date" id="dob" required>
+    </p>
+    <p>
+        <label for="ssn"><b>SSN:</b></label>
+    
+        <input type="text" placeholder="Enter SSN" id="ssn" required>
+    </p>
+    <p>
+        <label for="position"><b>Position:</b></label>
+    
+        <input type="text" placeholder="Enter position" id="position" required>
+    </p>
+    <p>
+        <label for="dob"><b>Date of Birth:</b></label>
+
+        <input type="date" id="dob" required>
+    </p>
+    </div>
+
+    <p>
+        <label for="address1"><b>Address 1:</b></label>
+        <input type="text" placeholder="Enter Address" id="address1" required>
+    </p>
+    <p>
+        <label for="address2"><b>Address 2:</b></label>
+        <input type="text" placeholder="(apt, suit, etc)" id="address2">
+    </p>
+    <p>
+        <label for="city"><b>City:</b></label>
+        <input type="text" placeholder="Enter City" id="city" required>
+    </p>
+    <p>
+        <Label for="state"><b>State:</b></Label>
+        <select id="state">
+            <option value="Select">Select</option>
+            <option value="AL">AL</option>
+            <option value="AK">AK</option>
+            <option value="AZ">AZ</option>
+            <option value="AR">AR</option>
+            <option value="CA">CA</option>
+            <option value="CO">CO</option>
+            <option value="CT">CT</option>
+            <option value="DE">DE</option>
+            <option value="DC">DC</option>
+            <option value="FL">FL</option>
+            <option value="GA">GA</option>
+            <option value="HI">HI</option>
+            <option value="ID">ID</option>
+            <option value="IL">IL</option>
+            <option value="IN">IN</option>
+            <option value="IA">IA</option>
+            <option value="KS">KS</option>
+            <option value="KY">KY</option>
+            <option value="LA">LA</option>
+            <option value="ME">ME</option>
+            <option value="MD">MD</option>
+            <option value="MA">MA</option>
+            <option value="MI">MI</option>
+            <option value="MN">MN</option>
+            <option value="MS">MS</option>
+            <option value="MO">MO</option>
+            <option value="MT">MT</option>
+            <option value="NE">NE</option>
+            <option value="NV">NV</option>
+            <option value="NH">NH</option>
+            <option value="NJ">NJ</option>
+            <option value="NM">NM</option>
+            <option value="NY">NY</option>
+            <option value="NC">NC</option>
+            <option value="ND">ND</option>
+            <option value="OH">OH</option>
+            <option value="OK">OK</option>
+            <option value="OR">OR</option>
+            <option value="PA">PA</option>
+            <option value="RI">RI</option>
+            <option value="SC">SC</option>
+            <option value="SD">SD</option>
+            <option value="TN">TN</option>
+            <option value="TX">TX</option>
+            <option value="UT">UT</option>
+            <option value="VT">VT</option>
+            <option value="VA">VA</option>
+            <option value="WA">WA</option>
+            <option value="WV">WV</option>
+            <option value="WI">WI</option>
+            <option value="WY">WY</option>
+        </select>
+        </p>
+
+        <p>
+            <label for="zipcode"><b>Zipcode:</b></label>
+            <input type="number" placeholder="Enter zipcode" id="zipcode" required>
+        </p>
+        <p>
+            <div>
+                <button type="submit" class="bigSigbutton" onclick="register()">Sign Up</button>
+                <button class="bigSigbutton" type="button" onclick="window.location.href = `index.html`">Cancel</button>
+            </div>
+
+          </div>
+        </p>
+        
+
+        <script>
+            //Switch between the server and local hosting by changing "fetchLoc to one of the below"
+            serverLocation = `http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000`;
+            localLocation = `http://localhost:5000`
+            let fetchLocation = localLocation;
+
+
+//             function getFields() {
+//                 const userType = document.getElementById("Utype").value;
+
+//                 if(userType == "customer") {
+//                     document.getElementById("extraFields").innerHTML = `<p>\n\
+//     <label for="fname"><b>First Name:</b></label>\n\
+
+//     <input type="text" placeholder="Enter First Name" id="fname" required>\n\
+// </p>\n\
+// <p>\n\
+//     <label for="lname"><b>Last Name:</b></label>\n\
+
+//     <input type="text" placeholder="Enter Last Name" id="lname" required>\n\
+// </p>\n\
+// <p>\
+//     <label for="phoneNumber"><b>Phone Number:</b></label>\n\
+
+//     <input type="number" placeholder="Enter Last Name" id="phoneNumber" required>\n\
+// </p>\
+// <p>\
+//     <label for="dob"><b>Date of Birth:</b></label>\n\
+
+//     <input type="date" id="dob" required>\n\
+// </p>`
+//                 } else if(userType == "employee") {
+//                     document.getElementById("extraFields").innerHTML = `<p>\n\
+//     <label for="fname"><b>First Name:</b></label>\n\
+
+//     <input type="text" placeholder="Enter First Name" id="fname" required>\n\
+// </p>\n\
+// <p>\n\
+//     <label for="lname"><b>Last Name:</b></label>\n\
+
+//     <input type="text" placeholder="Enter Last Name" id="lname" required>\n\
+// </p>\n\
+// <p>\
+//     <label for="phoneNumber"><b>Phone Number:</b></label>\n\
+
+//     <input type="number" placeholder="Enter Last Name" id="phoneNumber" required>\n\
+// </p>\n\
+// <p>\
+//     <label for="dob"><b>Date of Birth:</b></label>\n\
+
+//     <input type="date" id="dob" required>\n\
+// </p>\
+// <p>\
+//     <label for="ssn"><b>SSN:</b></label>\n\
+
+//     <input type="text" placeholder="Enter SSN" id="ssn" required>\n\
+// </p>\
+// <p>\
+//     <label for="position"><b>Position:</b></label>\n\
+
+//     <input type="text" placeholder="Enter position" id="position" required>\n\
+// </p>`
+//                 } else {
+//                     document.getElementById("extraFields").innerHTML = `<p>\n\
+//     <label for="sname"><b>Supplier Name:</b></label>\n\
+
+//     <input type="text" placeholder="Enter First Name" id="sname" required>\n\
+// </p>\n\
+// <p>\
+//     <label for="phoneNumber"><b>Phone Number:</b></label>\n\
+
+//     <input type="number" placeholder="Enter Last Name" id="phoneNumber" required>\n\
+// </p>`
+//                 }
+//             }
+
+
+            function register() {
+                event.preventDefault();
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                const confPassword = document.getElementById("confirmPassword").value;
+                const emailAddress = document.getElementById("email").value;
+                const addr1 = document.getElementById("address1").value;
+                let addr2 = document.getElementById("address2").value;
+                const city = document.getElementById("city").value;
+                const state = document.getElementById("state").value;
+                const userType = "employee";
+                const zipcode = document.getElementById("zipcode").value;
+
+                let bodyVal
+                if(!addr2) {
+                            addr2 = "";
+                        }
+
+                if(userType=="customer") {
+                    const phoneNumber = document.getElementById("phoneNumber").value;
+                    const firstName = document.getElementById("fname").value;
+                    const lastName = document.getElementById("lname").value;
+                    const dob = document.getElementById("dob").value;
+                    
+                    bodyVal = JSON.stringify({
+                        username,
+                        password,
+                        emailAddress,
+                        addr1,
+                        addr2,
+                        city,
+                        state,
+                        phoneNumber,
+                        firstName,
+                        lastName,
+                        dob,
+                        zipcode
+                    });
+                } else if(userType=="employee") {
+                    const phoneNumber = document.getElementById("phoneNumber").value;
+                    const firstName = document.getElementById("fname").value;
+                    const lastName = document.getElementById("lname").value;
+                    const dob = document.getElementById("dob").value;
+                    const ssn = document.getElementById("ssn").value;
+                    const position = document.getElementById("position").value;
+
+                    bodyVal = JSON.stringify({
+                        username,
+                        password,
+                        emailAddress,
+                        addr1,
+                        addr2,
+                        city,
+                        state,
+                        phoneNumber,
+                        firstName,
+                        lastName,
+                        dob,
+                        zipcode,
+                        ssn,
+                        position
+                    });
+                } else if(userType=="supplier") {
+                    const phoneNumber = document.getElementById("phoneNumber").value;
+                    const supplierName = document.getElementById("sname").value;
+
+                    bodyVal = JSON.stringify({
+                        username,
+                        password,
+                        emailAddress,
+                        addr1,
+                        addr2,
+                        city,
+                        state,
+                        zipcode,
+                        phoneNumber,
+                        supplierName
+                    });
+                }
+              
+
+
+                if (username != "" && password != "" && password == confPassword) {
+                    if(emailAddress && addr1 && city && state) {
+                        
+                  
+                        
+                        (async () => {
+                        const rawResponse = await fetch(`${fetchLocation}/register${userType}`, {
+                            method: "POST",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                            body: bodyVal,
+                        });
+                        const content = await rawResponse.json();
+                  
+                        if (content.hasOwnProperty("success")) {
+                            window.location.href = "index.html";
+                        } else if (content.hasOwnProperty("error")) {
+                            alert(
+                                "Error: Profile creation failed. Please try again."
+                            );
+                        }
+                        })();
+                    }  
+                } else {
+                    alert("Cannot set those credentials!  Please enter valid login information!");
+                }
+            }
+
+            function logout() {
+              localStorage.removeItem("username");
+              localStorage.removeItem("userType");
+              window.location.href = "login.html";
+          }
+          </script>
+    </body>
+</html>
