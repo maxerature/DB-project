@@ -51,6 +51,9 @@ export default {
                     <div class="bigNavButton" onclick="window.location='viewUsers.html'">
                         View users
                     </div>
+                    <div class="bigNavButton" onclick="window.location='registerEmployee.html'">
+                        Register Employee
+                    </div>
                     <button type="button" id="logout" class="logoutButton" onclick="logout()"><h3>Log Out</h3></button>
                 </div>`
             } else if(userTypeNum == 2) {
