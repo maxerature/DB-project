@@ -22,9 +22,15 @@
         <div id="usersTable"></div>
 
         <script>
+            //Switch between the server and local hosting by changing "fetchLoc to one of the below"
+            serverLocation = `http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000`;
+            localLocation = `http://localhost:5000`
+            let fetchLocation = localLocation;
+
+
             function loadUsers() {
                 (async () => {
-                    const rawResponse = await fetch("http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000/viewUsers", {
+                    const rawResponse = await fetch(`${fetchLocation}/viewUsers`, {
                         method: "POST",
                         headers: {
                             Accept: "application/json",
