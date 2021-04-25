@@ -1,9 +1,13 @@
 import { createPool } from "mysql2";
 let pass = "password"
+const foreignHost = "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com";
+const localHost = "localhost";
+const hostUsed = localHost;
+
 var MySQL = createPool({
-  host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
+  host: hostUsed,
   user: "root",
-  password: "databaseproject",
+  password: "password",
   port: 3306,
   database: "databases_project",
 });

@@ -15,10 +15,13 @@ export default {
             const {username, userType, addr1, addr2, city, state, zipcode} = req.body;
 
             var mysql = require('mysql2');
+            const foreignHost = "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com";
+            const localHost = "localhost";
+            const hostUsed = localHost;
             var con = await mysql.createConnection({
-                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
+                host: hostUsed,
                 user: "root",
-                password: "databaseproject",
+                password: "password",
                 port: 3306,
                 database: "databases_project"
             });

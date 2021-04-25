@@ -12,6 +12,7 @@ export default {
     ) => {
         try {
             const {unique, counts, tType, tnum, username, total} = req.body;
+            
 
             let first = true;
             console.log("Total:" + total);
@@ -19,10 +20,13 @@ export default {
             //Connect to sql
             var mysql = require('mysql2');
 
+            const foreignHost = "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com";
+            const localHost = "localhost";
+            const hostUsed = localHost;
             var con = await mysql.createConnection({
-                host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
+                host: hostUsed,
                 user: "root",
-                password: "databaseproject",
+                password: "password",
                 port: 3306,
                 database: "databases_project"
             });
