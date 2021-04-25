@@ -114,7 +114,8 @@ export default {
                             FROM addresses\n\
                             WHERE\n\
                                 userID = ${userID}\n\
-                                AND active = true;`
+                                AND active = true
+                                AND userType = 0;`
 
                             con.connect(function (err) {
                                 if(err) throw err;
