@@ -94,7 +94,7 @@ export default {
 
                     //Get user ID
                     let query = `\
-                    SELECT customerID\n\
+                    SELECT customerID, rewardsPoints, membershipStatus\n\
                     FROM customers\n\
                     WHERE\n\
                         username = \"${username}\";`
@@ -104,6 +104,8 @@ export default {
                         con.query(query, function (err, result) {
                             console.log(result);
                             let userID = result[0].customerID;
+                            let rewardsPoints = result[0].rewardsPoints;
+                            let membershipStatus = result[0].membershipStatus;
                             console.log("UserID: " + userID)
 
                             //Get user address
@@ -141,43 +143,73 @@ export default {
                                         con.query(query, function (err, result) {
                                             let orderID = result.insertId;
                                             
-                                            //Add items to order and decrease product counts
-                                            for(let i=0; i< unique.length; i++) {
-                                                let object=unique[i];
-                                                let query = `\
-                                                INSERT INTO cartobjects (\n\
-                                                    orderID,\n\
-                                                    productID,\n\
-                                                    count\n\
-                                                )\n\
-                                                VALUES (\n\
-                                                    ${orderID},\n\
-                                                    ${object},\n\
-                                                    ${counts[i]}\n\
-                                                )`
-                                                console.log(counts[i]);
-                                                console.log(counts);
-                                                console.log(counts[0]);
-                                                console.log(counts[1]);
-                                                con.connect(function (err) {
-                                                    if(err) throw err;
-                                                    con.query(query, function(err, result) {
-                                                        if(err) throw err;
-                                                        let query = `\
-                                                        UPDATE products\n\
-                                                        SET count=count-${counts[i]}\n\
-                                                        WHERE\n\
-                                                            productID = ${object}`
+                                            
+                                            if(membershipStatus == 1) {
+                                                if(parseInt(rewardsPoints)) {
+                                                    rewardsPoints += Math.floor(total/10);
+                                                } else {
+                                                    rewardsPoints = Math.floor(total/10);
+                                                }
+                                            } else {
+                                                if(parseInt(rewardsPoints)) {
+                                                    rewardsPoints += Math.floor(total/100);
+                                                } else {
+                                                    rewardsPoints = Math.floor(total/100);
+                                                }
+                                            }
+                                            console.log(rewardsPoints);
+                                            let query = `\
+                                            UPDATE customers\n\
+                                            SET rewardsPoints = ${rewardsPoints}\n\
+                                            WHERE\n\
+                                                customerID = ${userID}`;
+                                            con.connect(function (err) {
+                                                if(err) throw err;
+                                                con.query(query, function (err, result) {
+                                                    console.log("eee.");
+                                                    console.log(result);
 
+                                                    //Add items to order and decrease product counts
+                                                    for(let i=0; i< unique.length; i++) {
+                                                        let object=unique[i];
+                                                        let query = `\
+                                                        INSERT INTO cartobjects (\n\
+                                                            orderID,\n\
+                                                            productID,\n\
+                                                            count\n\
+                                                        )\n\
+                                                        VALUES (\n\
+                                                            ${orderID},\n\
+                                                            ${object},\n\
+                                                            ${counts[i]}\n\
+                                                        )`
+                                                        console.log("counts[i]" + counts[i]);
+                                                        console.log(counts);
+                                                        console.log(counts[0]);
+                                                        console.log(counts[1]);
                                                         con.connect(function (err) {
                                                             if(err) throw err;
-                                                            con.query(query, function (err, result) {
-                                                                console.log("kill me.");
+                                                            con.query(query, function(err, result) {
+                                                                if(err) throw err;
+                                                                let query = `\
+                                                                UPDATE products\n\
+                                                                SET count=count-${counts[i]}\n\
+                                                                WHERE\n\
+                                                                    productID = ${object}`
+                                                            
+                                                                con.connect(function (err) {
+                                                                    if(err) throw err;
+                                                                    con.query(query, function (err, result) {
+                                                                        console.log("kill me.");
+                                                                    
+
+                                                                    })
+                                                                })
                                                             })
                                                         })
-                                                    })
-                                                })
-                                            }
+                                                    }
+                                                });
+                                            });
                                         })
                                     })
 

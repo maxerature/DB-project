@@ -76,7 +76,8 @@ export default {
             WHERE 
             	customers.username = \"${username}\"
                 AND addresses.addressID = orders.addressID
-                AND transactions.transactionID = orders.transactionID;`
+                AND transactions.transactionID = orders.transactionID
+            ORDER BY orders.orderID DESC;`
 
             
             //Run query
