@@ -14,11 +14,11 @@ export default {
             var mysql = require('mysql2');
             const foreignHost = "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com";
             const localHost = "localhost";
-            const hostUsed = localHost;
+            const hostUsed = foreignHost;
             var con = await mysql.createConnection({
                 host: hostUsed,
                 user: "root",
-                password: "password",
+                password: "databaseproject",
                 port: 3306,
                 database: "databases_project"
             });
