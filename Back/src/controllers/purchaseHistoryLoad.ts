@@ -10,6 +10,10 @@ function getWords(con, query) {
             if(err) throw err;
             con.query(query, function (err, result) {
                 if(err) throw err;
+
+                if(result.length == 0) {
+                    str += `none`;
+                }
                 
                 for(let product of result) {
                     str += `\
@@ -114,10 +118,10 @@ export default {
                         `
                         if(object.paidWCredit == 1) {
                             hiddenString += `
-                            <b>Paid by credit (Card Number: ${object.cardNumber}</b>`
+                            <b>Paid by credit (Card Number: ${object.cardNumber})</b>`
                         } else if(object.paidWDebit == 1) {
                             hiddenString += `
-                            <b>Paid by debit (Bank Number: ${object.bankdNumber}</b>`
+                            <b>Paid by debit (Bank Number: ${object.bankNumber})</b>`
                         }
 
                         hiddenString += `\
@@ -142,14 +146,18 @@ export default {
                             AND orders.orderID = ${object.orderID};`
 
                          let str = await getWords(con, query)
+                            if(str == "none") {
+                                hiddenString = `All products were deleted.  Contact customer support for more info.`;
+                            } else {
                         //.then((str) => {
                             
                             hiddenString += str;
                             hiddenString += `</table></div>`;
+                            }
                             hiddenText.push(hiddenString);
                             // console.log(hiddenString);
                         //});
-                                              
+                                        
                     }
                     res.json({mainLoad: divString, hidden: hiddenText});
                 })
