@@ -55,8 +55,8 @@
         function setContents(number) {
             document.getElementById(`toggle${number}`).innerHTML = hidden[number];
         }
-        function remContents(number) {
-            document.getElementById(`toggle${number}`).innerHTML = `<button type="button" id="button${number}" onclick="setContents(${number})">View Order</button>`
+        function remContents(number, date) {
+            document.getElementById(`toggle${number}`).innerHTML = `<button type="button" id="button${number}" onclick="setContents(${number})">View Order From ${date}</button>`
         }
 
         function logout() {

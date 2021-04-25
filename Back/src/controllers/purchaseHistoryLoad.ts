@@ -36,6 +36,8 @@ export default {
             //Setup
             const { username } = req.body;
 
+            let datePos;
+
             var mysql = require('mysql2');
             var con = await mysql.createConnection({
                 host: "database-1.cdpxda8fq2yw.us-east-2.rds.amazonaws.com",
@@ -82,10 +84,7 @@ export default {
                     console.log(orders);
                     //setup return function buttons.
                     
-                    for(let i=0; i<result.length; i++) {
-                        divString += `\
-                        <div id="toggle${i}"><button type="button" id="button${i}" onclick="setContents(${i})">View Order</button></div>`
-                    }
+
 
                     
 
@@ -94,9 +93,18 @@ export default {
                     
                     for(let i=0; i<orders.length; i++) {
                         let object = orders[i];
+                        //Get only date from timestamp
+                        let strr = "";
+                        strr = String(object.purchaseDate);
+                        datePos = strr.indexOf("00:00:00");
+                        object.purchaseDate = strr.slice(0, datePos);
+
+                        divString += `\
+                        <div id="toggle${i}"><button type="button" id="button${i}" onclick="setContents(${i})">View Order From ${object.purchaseDate}</button></div>`
+
                         //Set base text per each order
                         let hiddenString = `\
-                        <div id="toggleOff${i}"><button type="button" id="buttonOff${i}" onclick="remContents(${i})">Close  Order</button></p>\n\
+                        <div id="toggleOff${i}"><button type="button" id="buttonOff${i}" onclick="remContents(${i}, \`${object.purchaseDate}\`)">Close  Order</button></p>\n\
                         <b>Purchase Date: </b><p class="inline">${object.purchaseDate}</p><br>\n\
                         <b>Delivered to: </b>\n\
                         <p>${object.addressLine1}</p>\n\

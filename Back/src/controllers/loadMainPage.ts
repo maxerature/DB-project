@@ -27,6 +27,8 @@ export default {
                 userTypeNum = -1;
             }
 
+            console.log(userTypeNum)
+
             let divString = ``;
             if(userTypeNum == 0) {
                 divString = `
