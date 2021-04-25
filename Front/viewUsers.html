@@ -19,6 +19,64 @@
                 <h3>View Addresses</h3>
             </button>
         </div>
+        <div id="inputFormDiv">
+            <form id="inputForm">
+                <p>
+                    <label for="checks"><b>User Type to View: </b></label>
+                </p>
+          
+                <div id="checks">
+                    <p>
+                        <label for="checksCustomer"><b>Customers: </b></label>
+                        <input
+                          class="inline"
+                          type="checkbox"
+                          id="checksCustomer"
+                           name="checksCustomer"
+                        />
+                    </p>
+                    <p>
+                        <label for="checksSupplier"><b>Suppliers: </b></label>
+                        <input
+                          class="inline"
+                          type="checkbox"
+                          id="checksSupplier"
+                           name="checksSupplier"
+                        />
+                    </p>
+                    <p>
+                        <label for="checksEmployee"><b>Employees: </b></label>
+                        <input
+                          class="inline"
+                          type="checkbox"
+                          id="checksEmployee"
+                           name="checksEmployee"
+                        />
+                    </p>
+                </div>
+
+                <div id = "names">
+                    <p>
+                        <label for="firstName"><b>First Name</b></label>
+                        <input class="inline" type="text" id="firstName" name = "firstName" placeholder="First name">
+                    </p>
+                    <p>
+                        <label for="lastName"><b>Last Name</b></label>
+                        <input class="inline" type="text" id="lastName" name = "lastName" placeholder="Last name">
+                    </p>
+                    <p>
+                        <label for="email"><b>Email</b></label>
+                        <input class="inline" type="text" id="email" name = "email" placeholder="Email Address">
+                    </p>
+                    <p>
+                        <label for="phoneNumber"><b>Phone Number</b></label>
+                        <input class="inline" type="number" id="phoneNumber" name = "phoneNumber" placeholder="Phone Number">
+                    </p>
+                </div>
+
+                <button type="button" id="search" onclick="searchUsers()">Search!</button>
+            </form>
+        </div>
         <div id="usersTable"></div>
 
         <script>
@@ -28,7 +86,14 @@
             let fetchLocation = localLocation;
 
 
-            function loadUsers() {
+            function searchUsers() {
+                const customers = document.getElementById("checksCustomer").checked;
+                const suppliers = document.getElementById("checksSupplier").checked;
+                const employees = document.getElementById("checksEmployee").checked;
+                const firstName = document.getElementById("firstName").value;
+                const lastName = document.getElementById("lastName").value;
+                const email = document.getElementById("email").value;
+                const phoneNumber = document.getElementById("phoneNumber").value;
                 (async () => {
                     const rawResponse = await fetch(`${fetchLocation}/viewUsers`, {
                         method: "POST",
@@ -36,7 +101,7 @@
                             Accept: "application/json",
                             "Content-Type": "application/json",
                         },
-                        
+                        body: JSON.stringify({customers: customers, suppliers: suppliers, employees: employees, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber}),
                     });
                     const content = await rawResponse.json();
                     if(content.hasOwnProperty("success"))
