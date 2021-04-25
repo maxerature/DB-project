@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href = "Style.css">
+        <title>Addresses</title>
+    </head>
+    <body>
+        <div class="nav">
+            <button type="button" id="logout" class="logoutButton" onclick="logout()">
+                <h3>Log Out</h3>
+            </button>
+            <button type="button" id="logout" class="logoutButton" onclick="window.location.href=`index.html`">
+                <h3>Main Page</h3>
+            </button>
+            <button type="button" id="logout" class="logoutButton" onclick="window.location.href=`viewAddresses.html`">
+                <h3>View Addresses</h3>
+            </button>
+        </div>
+        <div>
+            <h3><u>Add Address</u></h3>
+            <form>
+                <p>
+                    <label for="address1"><b>&#127968 Address 1:</b></label>
+                </p>
+                <p>
+                    <input type="text" placeholder="Enter Address" id="address1" required>
+                </p>
+                <p>
+                    <label for="address2"><b>&#127968 Address 2:</b></label>
+                </p>
+                <p>
+                    <input type="text" placeholder="(apt, suit, etc)" id="address2">
+                </p>
+                <p>
+                    <label for="city"><b>&#127745 City:</b></label>
+                </p>
+                <p>
+                    <input type="text" placeholder="Enter City" id="city" required>
+                </p>
+                <p>
+                    <Label for="state"><b>State:</b></Label>
+                    <select id="state">
+                        <option value="Select">Select</option>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AZ">AZ</option>
+                        <option value="AR">AR</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DE">DE</option>
+                        <option value="DC">DC</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="IA">IA</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="ME">ME</option>
+                        <option value="MD">MD</option>
+                        <option value="MA">MA</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MS">MS</option>
+                        <option value="MO">MO</option>
+                        <option value="MT">MT</option>
+                        <option value="NE">NE</option>
+                        <option value="NV">NV</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NY">NY</option>
+                        <option value="NC">NC</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WV">WV</option>
+                        <option value="WI">WI</option>
+                        <option value="WY">WY</option>
+                    </select>
+                    </p>
+                    <p>
+                        <label for="zipcode"><b>&#128205 Zipcode:</b></label>
+                </p>
+                <p>
+                        <input type="number" placeholder="Enter zipcode" id="zipcode" required>
+                    </p>
+                    <button type="button" onclick="addAddress()" class="bigSigbutton">Complete</button>
+            </form>
+        </div>
+        <script>
+            //Switch between the server and local hosting by changing "fetchLoc to one of the below"
+            serverLocation = `http://ec2-3-129-52-46.us-east-2.compute.amazonaws.com:5000`;
+            localLocation = `http://localhost:5000`
+            let fetchLocation = localLocation;
+
+
+            function addAddress() {
+                let username = localStorage.getItem('username');
+                let userType = localStorage.getItem('userType');
+
+                event.preventDefault();
+                const addr1 = document.getElementById("address1").value;
+                let addr2 = document.getElementById("address2").value;
+                const city = document.getElementById("city").value;
+                const state = document.getElementById("state").value;
+                const zipcode = document.getElementById("zipcode").value;
+
+                let bodyVal
+                if(!addr2) {
+                    addr2 = "";
+                }
+
+                if(!address1 || !city || !state || !zipcode) {
+                    alert("Fields other than Address 2 must be filled!");
+                    return;
+                }
+
+                (async () => {
+                    const rawResponse = await fetch(`${fetchLocation}/viewAddressesAdd`, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({username, userType, addr1, addr2, city, state, zipcode}),
+                    });
+                    const content = await rawResponse.json();
+                
+                    if (content.hasOwnProperty("success")) {
+                        alert("Address successfully added");
+                        window.location.href = "viewAddresses.html";
+                    } else if (content.hasOwnProperty("error")) {
+                        alert(
+                            "Error: Address creation failed. Please try again."
+                        );
+                        
+                    }
+                })();
+            }
+
+            function logout() {
+                localStorage.removeItem("username");
+                localStorage.removeItem("userType");
+                window.location.href = "login.html";
+            }
+        </script>
+    </body>
+</html>
